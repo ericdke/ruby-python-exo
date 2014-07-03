@@ -233,7 +233,7 @@ Pour le moment, notre classe ne fait rien: elle est juste définie.
 
 Elle est *capable* de dire "Hello World!" car elle contient une méthode qui contient cette instruction, mais ne *fait* encore rien.
 
-Si vous enregistrez ces quatre lignes dans un fichier `saluer.rb` ('rb' est l'extension pour Ruby) et si vous l'exécutez, rien ne se passe.
+Si vous enregistrez ces lignes dans un fichier `saluer.rb` ('rb' est l'extension pour Ruby) et si vous l'exécutez, rien ne se passe.
 
 Pour exécuter ce script Ruby, faites:
 
@@ -288,10 +288,10 @@ Pour rester simple, notre application sera en ligne de commande. Elle va s'exéc
 On tapera le nom de notre app, puis une donnée. Par exemple, pour savoir quelles exoplanètes ont été découvertes en l'an 2000, on fera:
 
 ```
-ruby exo.rb 2000
+ruby exoplanetes.rb 2000
 ```  
 
-Cela signifie que notre script ici nommé "exo.rb" doit être capable de *recevoir* des données de la part de l'utilisateur: ici, le nombre 2000.
+Cela signifie que notre script ici nommé "exoplanetes.rb" devra être capable de *recevoir* des données de la part de l'utilisateur: ici, le nombre 2000.
 
 Heureusement, c'est déjà prévu dans Ruby. Ca prend la forme d'une constante nommée 
 
@@ -301,7 +301,7 @@ qui contient la ou les données dans un container.
 
 Avec 
 
-`ruby exo.rb 2000`
+`ruby exoplanetes.rb 2000`
 
 la constante ARGV contient: 
 
@@ -309,7 +309,7 @@ la constante ARGV contient:
 
 Si l'on faisait 
 
-`ruby exo.rb 2000 2001 2002`
+`ruby exoplanetes.rb 2000 2001 2002`
 
 ARGV contiendrait: 
 
@@ -323,7 +323,7 @@ En Ruby on appelle cette structure un tableau (Array).
 
 *C'est juste un container à éléments*. 
 
-Il en existe de nombreuses autres sortes. On peut mettre ce qu'on veut dedans. Exemples d'arrays:
+On peut mettre ce qu'on veut dedans. Exemples d'arrays:
 
 ```ruby
 prénoms = ['Eric', 'Alice', 'Nicolas', 'James', 'Nico']
@@ -338,15 +338,21 @@ Si l'on en veut qu'une, on peut l'attraper par son numéro d'index:
 
 `puts prénoms[0]` 
 
-va afficher (`puts`) le premier prénom du tableau (car d'index `0`).
+donnera 'Eric'.
+
+C'est-à-dire que ça va afficher (`puts`) le premier prénom du tableau (car d'index `0`).
 
 Pour le deuxième prénom? 
 
 `prénoms[1]`
 
+donnera 'Alice'.
+
 Pour le troisième? 
 
 `prénoms[2]`
+
+donnera 'Nicolas'.
 
 *Le fait que l'index commence à zéro est troublant mais on s'habitude vite.*
 
@@ -366,15 +372,15 @@ affichera le contenu du premier champ du tableau ARGV, et donc dans notre cas l'
 
 ## Structures: dictionnaire
 
-Il y a de nombreuses structures disponibles, et pour le moment nous n'avons vu que le tableau (ou 'Array'). 
+Il y a de nombreuses structures disponibles, et pour le moment nous n'avons vu que le tableau (ou 'Array'). Et encore, on l'a aperçu... mais ça suffit pour nos besoins actuels.
 
-Je dois en présenter une autre avant d'aller plus loin: le dictionnaire, ou en Ruby le "hash".
+Je dois en présenter une autre avant d'aller plus loin, même si on ne va pas s'en servir de suite: le dictionnaire, ou en Ruby le "hash".
 
 Alors qu'un tableau contient une suite d'éléments uniques, un hash contient une suite d'éléments par paires, et ces paires sont des clés/valeurs.
 
 Comme dans un vrai dictionnaire, où chaque clé "mot" correspond à une valeur "définition du mot".
 
-Et en Ruby comme en Python, un dictionnaire s'écrit... comme du JSON, entre "{" et "}", à la différence (pour simplifier) qu'il n'y a pas ":" entre la clé et la valeur mais "=>":
+Et en Ruby comme en Python, un dictionnaire s'écrit... comme du JSON, entre "{" et "}", à la différence qu'il n'y a pas ":" entre la clé et la valeur mais "=>":
 
 ```ruby
 moi = {'âge' => 40, 'prénom' => 'eric', 'sexe' => 'non mais oh'}
@@ -385,6 +391,7 @@ En revanche pour accéder aux infos on n'utilise par d'index car un dictionnaire
 On utilise... les clés.
 
 **exo1c.rb**
+
 ```ruby
 moi = {'âge' => 40, 'prénom' => 'eric', 'sexe' => 'non mais oh'}
 
@@ -392,7 +399,7 @@ puts "Mon prénom est " + moi['prénom']
 puts "Et on s'arrêtera là, " + moi['sexe']
 ```  
 
-C'est le même principe que pour les tableaux, mais au lieu de [index] on a ['clé'].
+C'est le même principe que pour les tableaux, mais au lieu de [index] on a ['clé'] pour retrouver les valeurs.
 
 Au passage, on vient de voir que "+" en Ruby n'est pas fait que pour le calcul. :)
 
@@ -403,6 +410,7 @@ En Ruby tout est objet, et la plupart des objets ont déjà plein de méthodes p
 Par exemple, ici on va transformer 'eric' en 'Eric' en appellant la méthode 'capitalize' sur l'objet chaîne de caractères 'prénom' du dictionnaire 'moi'.
 
 **exo1d.rb**
+
 ```ruby
 moi = {'âge' => 40, 'prénom' => 'eric', 'sexe' => 'non mais oh'}
 
@@ -413,17 +421,19 @@ Le code
 
 `moi['prénom']` 
 
-représente "eric", donc une fois qu'on appelle `capitalize` dessus, ça donne "Eric".
+représente la valeur "eric", donc une fois qu'on appelle la méthode `capitalize` dessus, ça donne "Eric".
 
 Le résultat du script `exo1d.rb` est:
 
 `Mon prénom est Eric`
 
-Dernier point: vous avez remarqué que certaines valeurs sont des chaînes de caractères (elles sont entre guillemets simples ou doubles) et que d'autres sont des valeurs numériques, des nombres.
+On peut appeler la méthode "capitalize" sur du texte car elle fait partie des nombreuses méthodes déjà inclues par Ruby pour ce type d'objet.
+
+Dernier point: vous avez remarqué que certaines valeurs sont des chaînes de caractères (elles sont entre guillemets simples ou doubles), autrement dit du texte, et que d'autres sont des valeurs numériques, des nombres.
 
 Un nombre n'est pas la même chose que sa représentation textuelle.
 
-40 est différent de '40'
+`40` est différent de `'40'`
 
 Le premier est un nombre, le deuxième est une chaîne de caractères qui représente ce nombre.
 
@@ -437,7 +447,7 @@ puts "J'ai " + moi['âge'] + " ans"
 
 alors Ruby va râler parce qu'il ne sait pas ajouter un nombre au milieu d'une chaîne de caractères.
 
-Il faut transformer le nombre en texte qui le représente, et pour cela on appelle sur l'objet nombre la méthode "to_s" (qui signifie "to string"):
+Il faut transformer le nombre en texte qui le représente, et pour cela on appelle sur cet objet nombre la méthode "to_s" (qui signifie "to string"):
 
 ```ruby
 moi = {'âge' => 40, 'prénom' => 'eric', 'sexe' => 'non mais oh'}
@@ -447,7 +457,7 @@ puts "J'ai " + moi['âge'].to_s + " ans"
 
 Il y a d'autres manières de s'y prendre mais ceci me semblait necessaire pour la suite.
 
-Bon, fini la théorie, commençons à coder notre app !
+Bon, fini la théorie, allons coder notre app !
 
 ## Récupérer une info de l'utilisateur
 
@@ -458,6 +468,7 @@ On a dit qu'on voulait récupérer une année, par exemple 2000.
 Alors commencons par ne faire que ça, mais dans une structure capable d'évoluer par la suite:
 
 **exo2.rb**
+
 ```ruby
 class NasaExo
 
@@ -480,7 +491,7 @@ Ah! Il y a là pas mal de nouveautés. Mais c'est plutôt simple, suivez le guid
 
 Commençons par les deux dernières lignes. Que voit-on? 
 
-Une classe est instanciée *avec un paramètre* (ce paramètre est ARGV) dans un objet nommé 'exo', puis une méthode (what_year) de cette classe est appellée sur cet objet.
+Une classe, que nous avons définie au début du script, est instanciée *avec un paramètre* (ce paramètre est ARGV) dans un objet nommé 'exo', puis une méthode (what_year) de cette classe est appellée sur cet objet.
 
 Avant nous avions fait 
 
@@ -498,11 +509,11 @@ La classe récupère cette valeur lors de son instanciation et la fait sienne gr
 
 La méthode 'initialize' prend un paramètre, étiquetté ici 'params' dans sa définition, mais j'aurais le nommer comme bon me semble, genre 'chameau' ou 'fesse'. Mais bon... il vaut mieux s'efforcer de toujours être explicite et dans le contexte. :)
 
-Le contenu de ce paramètre (chez nous ce sera donc ARGV lors de l'instanciation) est transféré dans une variable dite *variable d'instance*, qui est représentée par 
+Le contenu de ce paramètre (chez nous ce sera donc ARGV lors de l'instanciation) est transféré dans une variable dite *variable d'instance* (car elle est accessible par toutes les méthodes de l'objet instancié), qui est représentée par 
 
 `@year`
 
-(les variables d'instance s'écrivent avec un '@' devant leur nom.)
+(en Ruby, les variables d'instance s'écrivent avec un '@' devant leur nom.)
 
 La ligne 
 
@@ -510,7 +521,7 @@ La ligne
 
 signifie donc: 
 
-**dis Ruby, crée je te prie une nouvelle instance de la classe NasaExo dans l'objet exo, et initialise au passage à l'intérieur de cette instance une variable qui contiendra la même chose que ARGV.**
+**dis Ruby, crée je te prie une nouvelle instance de la classe 'NasaExo' dans la variable 'exo', et initialise au passage à l'intérieur de cette instance une variable '@year' à partir du contenu de ARGV.**
 
 Ensuite nous voyons que la méthode initialize dans notre classe ne fait pas que transférer la valeur 'ARGV' dans la variable '@year' en passant par le paramètre 'params': elle en prend le premier élément du tableau (params[0]).
 
@@ -586,8 +597,9 @@ Après nos exercices, on peut maintenant reformuler notre app en français:
 3. Demander quelles exoplanètes ont été découvertes cette année-là
 4. Récupérer la réponse au format JSON
 5. Trier les éléments fournis
-6. Préparer un affichage avec ce qui nous intéresse
-7. Si demandé, enregistrer les résultats dans un fichier
+6. Gérer les éventuelles erreurs
+7. Préparer un affichage avec ce qui nous intéresse
+8. Si demandé, enregistrer les résultats dans un fichier
 ```  
 
 ## Résumé

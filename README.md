@@ -17,7 +17,7 @@ Nous aborderons les bases de Ruby et de Python par des exemples concrets et surt
 
 Dans chaque dossier il y a un tutoriel au format Markdown et des exemples de scripts en Ruby et/ou en Python.
 
-Consultez le fichier Markdown dans le visualiseur de votre choix ou même dans un éditeur de texte, et dans votre Terminal entrez dans le dossier pour pouvoir exécuter les exemples.
+Consultez le fichier Markdown, et dans votre Terminal entrez dans le dossier pour pouvoir exécuter les exemples.
 
 # Chapitre 01
 
