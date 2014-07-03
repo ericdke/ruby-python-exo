@@ -85,7 +85,7 @@ C'est le même principe qu'en Ruby mais formulé un peu différemment:
         self.year = params[1]
 ```  
 
-On a "__init__" au lieu de "initialize", mais c'est pareil.
+On a `__init__` au lieu de `initialize`, mais c'est pareil.
 
 Mais on a un "self" avant la variable de paramètres, c'est quoi? Hé bien ici l'explication est complexe et pas necessaire pour le moment, on va donc juste accepter le fait. :)
 
@@ -108,7 +108,7 @@ Méthode suivante:
 
 Encore ce "self" ! Hé oui, ben si vous voulez faire du Python va juste falloir s'y habituer... :)
 
-En Python, une méthode prend *toujours* un paramètre: quand elle n'en prend pas, alors elle prend "self" (la référence à sa classe); sinon elle prend "self" *puis* son paramètre (comme on l'a vu pour "__init__").
+En Python, une méthode prend *toujours* un paramètre: quand elle n'en prend pas, alors elle prend "self" (la référence à sa classe); sinon elle prend "self" *puis* son paramètre (comme on l'a vu pour `__init__`).
 
 Ensuite on affiche ("print") un texte suivi (",") de la variable d'instance qui contient l'année demandée par l'utilisateur dans ARGV (voir 1er chapitre).
 
@@ -142,7 +142,7 @@ Ouiiii! Nous y voilà. Presque.
 
 Notez l'url de l'API qui nous concerne:
 
-`'http://exoapi.com/api/skyhook/'`
+`http://exoapi.com/api/skyhook/`
 
 On va l'intégrer dans notre classe sous la forme d'une variable d'instance, dans la méthode d'initialisation:
 
@@ -377,7 +377,7 @@ Ensuite on appelle la méthode "print_list" en lui passant cette liste.
 
 Voyons maintenant notre méthode "get_names".
 
-On commence par créer un tableau vide pour y stocker les infos qui vont arriver:
+On commence par créer une liste (un tableau) vide pour y stocker les infos qui vont arriver:
 
 `names = []` 
 
@@ -415,13 +415,13 @@ Ce tableau de noms est renvoyé à la méthode "print_list" qui itère dans la l
 
 ## Conclusion
 
-Cette seconde partie du tutoriel est plus courte que la première car elle contient beaucoup plus de nouveaux éléments à prendre en compte.
+Ce second chapitre est plus court que le premier car il contient beaucoup plus de nouveaux éléments à retenir.
 
 Notre application existe désormais, et c'est formidable!
 
 Mais elle est très basique, et nous allons dans le prochain chapitre l'améliorer grandement.
 
-Nous avons déjà couvert les quatre premiers points de notre liste, et même une partie du cinquième.
+Nous avons déjà couvert les quatre premiers points de notre liste, et même une partie du cinquième:
 
 ```
 1. Récupérer une année indiquée par l'utilisateur, par exemple 2012
