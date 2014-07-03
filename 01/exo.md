@@ -326,10 +326,11 @@ En Ruby on appelle cette structure un tableau (Array).
 On peut mettre ce qu'on veut dedans. Exemples d'arrays:
 
 ```ruby
-prénoms = ['Eric', 'Alice', 'Nicolas', 'James', 'Nico']
+prénoms = ['Eric', 'Alice', 'Nicolas', 'Abed', 'John-Paul']
 emails = ['eric@aya.io', 'alice@disney.com']
 scores = [33, 12, 8192, 111111, 23423847, 73]
 todo_list = ['ranger chambre', 'call 0605040302', 'savon, shampooing, PQ']
+mes_tableaux = [prénoms, emails, scores, todo_list]
 ```  
 
 Et ensuite, comment récupérer ces infos ?
@@ -364,7 +365,17 @@ j'obtiens:
 
 `'savon, shampooing, PQ'`
 
-Et donc, pour notre ARGV? Ben si l'utilisateur ne demande qu'une année, elle sera automatiquement en première position, donc d'index `0`:
+Dernier exemple:
+
+`mes_tableaux[1][0]`
+
+donne
+
+`'eric@aya.io'`
+
+Oui, ça marche comme ça pour les *tableaux imbriqués*.
+
+Et donc, pour notre ARGV? Ben si l'utilisateur ne demande qu'une année, elle sera automatiquement en première position, donc d'index `0`.
 
 `puts ARGV[0]`
 
@@ -507,7 +518,7 @@ Cette valeur c'est dans notre exemple `ARGV`, qui souvenez-vous est une constant
 
 La classe récupère cette valeur lors de son instanciation et la fait sienne grâce à la méthode nommée 'initialize'.
 
-La méthode 'initialize' prend un paramètre, étiquetté ici 'params' dans sa définition, mais j'aurais le nommer comme bon me semble, genre 'chameau' ou 'fesse'. Mais bon... il vaut mieux s'efforcer de toujours être explicite et dans le contexte. :)
+La méthode 'initialize' prend un paramètre, étiquetté ici 'params' dans sa définition, mais j'aurais pu le nommer comme bon me semble, genre 'chameau' ou 'fesse'. Mais bon... il vaut mieux s'efforcer de toujours être explicite et dans le contexte. :)
 
 Le contenu de ce paramètre (chez nous ce sera donc ARGV lors de l'instanciation) est transféré dans une variable dite *variable d'instance* (car elle est accessible par toutes les méthodes de l'objet instancié), qui est représentée par 
 
@@ -523,7 +534,7 @@ signifie donc:
 
 **dis Ruby, crée je te prie une nouvelle instance de la classe 'NasaExo' dans la variable 'exo', et initialise au passage à l'intérieur de cette instance une variable '@year' à partir du contenu de ARGV.**
 
-Ensuite nous voyons que la méthode initialize dans notre classe ne fait pas que transférer la valeur 'ARGV' dans la variable '@year' en passant par le paramètre 'params': elle en prend le premier élément du tableau (params[0]).
+Ensuite nous voyons que la méthode 'initialize' dans notre classe ne fait pas que transférer la valeur 'ARGV' dans la variable '@year' en passant par le paramètre 'params': elle en prend le premier élément du tableau (params[0]).
 
 *Je résume: ARGV, qui contient un tableau, est passé à la classe NasaExo qui s'instancie avec une variable contenant la première valeur de ce tableau.*
 
