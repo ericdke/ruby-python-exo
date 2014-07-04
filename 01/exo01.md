@@ -151,9 +151,9 @@ action.dire_bonjour
 
 Bon alors, c'est simple et c'est compliqué en même temps. Voyons ce qu'il se passe.
 
-Tout d'abord, on remarque que le code est identé.
+Tout d'abord, on remarque que le code est indenté.
 
-![Identation](https://files.app.net/2x68zc8wk.png)
+![Indentation](https://files.app.net/2x68zc8wk.png)
 
 C'est une manière de représenter la hiérarchie du code.
 
@@ -169,11 +169,11 @@ qui se trouve à l'intérieur de la classe
 
 `Saluer`.
 
-En revanche, les deux dernières lignes ne sont pas identées, elles restent au niveau racine du script.
+En revanche, les deux dernières lignes ne sont pas indentées, elles restent au niveau racine du script.
 
 *En Ruby, l'indentation est la plupart du temps cosmétique et n'a donc pas d'autre importance que la lisibilité du script... mais c'est cependant important de respecter ces conventions.*
 
-Pour faire une identation, tapez la touche `TAB` sur votre clavier. Si votre éditeur de code est bien réglé, chaque TAB sera transformée, pour Ruby, en deux espaces (pour Python nous en reparlerons plus tard).
+Pour faire une indentation, tapez la touche `TAB` sur votre clavier. Si votre éditeur de code est bien réglé, chaque TAB sera transformée, pour Ruby, en deux espaces (pour Python nous en reparlerons plus tard).
 
 Avant d'expliquer la suite je vais rajouter une méthode dans la classe, ainsi qu'une instruction à la fin:
 

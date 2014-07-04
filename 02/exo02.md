@@ -11,7 +11,7 @@ Pour ce tutoriel nous allons poursuivre en Python.
 
 Et pour simplifier le suivi, j'ai adapté le code Ruby du précédent chapitre en code Python. 
 
-Nous allons découvrir ensemble les points communs et les différences entre ces deux langages, en tout cas au petit niveau qui nous concerne.
+Nous allons découvrir ensemble quelques points communs et différences entre ces deux langages, en tout cas au niveau qui nous concerne pour ce tuto.
 
 La plus grande différence entre les deux:
 
@@ -40,13 +40,13 @@ On voit bien que c'est similaire à Ruby, même si de nombreux détails changent
 
 La plus grande différence: il n'y a plus de "end" mais à la place une indentation du code.
 
-C'est cette identation qui indique à Python la hiérarchie du code: Python sait que la méthode "what_year" est dans la classe "NasaExo" car "what_year" est décalé d'un tab (quatre espaces, en principe) par rapport à la classe.
+C'est cette indentation qui indique à Python la hiérarchie du code: Python sait que la méthode "what_year" est dans la classe "NasaExo" car "what_year" est décalé d'un tab (quatre espaces, en principe) par rapport à la classe.
 
 Mais reprenons ligne par ligne.
 
 J'ai ajouté au début une instruction spéciale, qui ressemble à un commentaire car placée après un `#`, mais qui est un moyen de forcer Python à utiliser l'encodage de caractères en UTF-8, c'est-à-dire avec les accents du Français, les kanji japonais, les emoticons, etc.
 
-Je ne l'avais pas fait pour Ruby dans l'exercice précédent car Ruby est plus tolérant mais c'est le même principe.
+Je ne l'avais pas fait dans l'exercice précédent car Ruby est plus tolérant mais c'est le même principe.
 
 Ensuite:
 
@@ -54,11 +54,11 @@ Ensuite:
 
 'import' existe aussi en Ruby ('require') mais on n'en n'avait pas eu besoin.
 
-Ca signifie qu'on importe dans notre app des méthodes qui sont définies ailleurs (ici, dans Python) et pas chargées par défaut.
+Ca signifie qu'on importe dans notre app des méthodes qui sont définies ailleurs (ici, dans la "bibliothèque standard" de Python) et qui ne sont donc pas chargées par défaut.
 
-Là, on demande "je veux pouvoir utiliser les fonctions de ton module 'sys', Python".
+Là, on demande "Python, dans mon app je veux pouvoir utiliser les fonctions de ton module 'sys', merci".
 
-'sys': des fonctions pour utiliser le système d'exploitation. Ici, necessaire pour avoir accès à ARGV (alors que Ruby nous le donne direct).
+'sys': des fonctions pour utiliser le système d'exploitation. Ici, necessaire pour avoir accès à ARGV (alors que Ruby nous le donne directement).
 
 Ensuite, définition de la classe:
 
@@ -68,7 +68,7 @@ class NasaExo():
 
 Dans Ruby la plupart des parenthèses ne sont pas obligatoires, et donc je ne les avais pas mentionnées si pas necessaires.
 
-Dans Python il faut les écrire, même si il n'y a pas de paramètres (alors on met des parenthèses vides).
+En revanche dans Python il faut les écrire, même si il n'y a pas de paramètres (on met alors des parenthèses vides).
 
 Et *toujours* terminer une définition par ":" (deux points).
 
@@ -76,7 +76,7 @@ En revanche, pas besoin de "end": c'est l'indentation qui indique la hiérarchie
 
 Tout ce qui suivra cette déclaration de classe *et qui sera indenté* appartiendra à la classe. Pour sortir de la classe, il suffit de réduire l'indentation. On y reviendra.
 
-Ensuite, la méthode d'initialisation. 
+Ensuite, la méthode d'initialisation de la classe. 
 
 C'est le même principe qu'en Ruby mais formulé un peu différemment:
 
@@ -87,15 +87,17 @@ C'est le même principe qu'en Ruby mais formulé un peu différemment:
 
 On a `__init__` au lieu de `initialize`, mais c'est pareil.
 
-Mais on a un "self" avant la variable de paramètres, c'est quoi? Hé bien ici l'explication est complexe et pas necessaire pour le moment, on va donc juste accepter le fait. :)
+Mais on a aussi un "self" avant la variable de paramètres, c'est quoi? 
 
-Disons simplement que ce "self" c'est le même que celui de la ligne suivante, "self.year" et ça donne l'équivalent de la variable d'instance en Ruby "@year".
+Hé bien ici l'explication complète est complexe et pas necessaire pour le moment, on va donc juste accepter le fait. :)
 
-Le "self", tout comme "@", *représente* l'appartenance à la classe.
+Disons simplement que ce "self" c'est le même que celui de la ligne suivante, "self.year" et que ça donne l'équivalent de la variable d'instance en Ruby "@year".
+
+*Le "self", tout comme "@", *représente* ici l'appartenance à la classe.*
 
 Ensuite, on remarque que l'on pioche le deuxième élément du tableau ARGV au lieu du premier comme en Ruby.
 
-*Souvenez-vous, les tableaux sont indexés à partir de 0.*
+*Souvenez-vous, les tableaux sont indexés à partir de 0, donc le deuxième élément est 1.*
 
 C'est parce qu'en Python, le premier élément de ARGV est le nom du fichier de l'application en cours d'exécution.
 
@@ -108,9 +110,11 @@ Méthode suivante:
 
 Encore ce "self" ! Hé oui, ben si vous voulez faire du Python va juste falloir s'y habituer... :)
 
-En Python, une méthode prend *toujours* un paramètre: quand elle n'en prend pas, alors elle prend "self" (la référence à sa classe); sinon elle prend "self" *puis* son paramètre (comme on l'a vu pour `__init__`).
+En Python, une méthode prend *toujours* un paramètre, même si elle n'en a pas.
 
-Ensuite on affiche ("print") un texte suivi (",") de la variable d'instance qui contient l'année demandée par l'utilisateur dans ARGV (voir 1er chapitre).
+Elle prend "self" *puis* son paramètre (comme on l'a vu pour `__init__`); sinon elle prend seulement "self" (la référence à sa classe).
+
+Ensuite on affiche un texte suivi de la variable d'instance qui contient l'année demandée par l'utilisateur dans ARGV (voir 1er chapitre).
 
 On aurait aussi pu, comme en Ruby, faire
 
@@ -118,27 +122,31 @@ On aurait aussi pu, comme en Ruby, faire
 print "L'année demandée est " + self.year
 ```  
 
+mais la formule "texte puis virgule puis variable" est typiquement pythonesque.
+
 Nous voici maintenant revenus en dehors de la classe (indentation nulle) pour instancier celle-ci:
 
 ```python
 exo = NasaExo(sys.argv)
 ```  
 
-Dans Ruby on a directement un constante ARGV, en Python il faut appeler la méthode "argv" sur l'objet "sys" que l'on a précédemment importé.
+Dans Ruby on a directement un constante ARGV, mais en Python il faut appeler la méthode "argv" sur l'objet "sys" que l'on a précédemment importé.
 
-Et pour finir on appelle la méthode "what_year" sur l'objet "exo", comme en Ruby (on ajoute juste les parenthèses vides après le nom de la méthode):
+Et pour finir on appelle la méthode "what_year" sur l'objet "exo", comme en Ruby (on ajoute juste les parenthèses vides après le nom de la méthode alors que c'est optionnel en Ruby):
 
 ```python
 exo.what_year()
 ```  
 
-Youpi! On vient de traduire du Ruby en Python! Et le bonus: le plus dur est fait. Vous venez déjà de voir les détails les plus chiants pour ce qui concerne la différence entre les deux.
+Youpi! On vient de traduire du Ruby en Python! 
+
+Et le bonus: le plus dur est fait. Vous venez déjà de voir les détails les plus chiants pour ce qui concerne la différence entre les deux.
 
 Bien sûr il y a *énormément* d'autres différences, mais elles ne sont pas chiantes. :)
 
 ## La NASA! La NASA!
 
-Ouiiii! Nous y voilà. Presque.
+Ouiiii! Nous y voilà...
 
 Notez l'url de l'API qui nous concerne:
 
@@ -189,7 +197,7 @@ exo.what_year()
 print exo.get_planets()
 ```  
 
-Il y a une nouveauté, le "return": c'est simple, ça *renvoie* la résultat de la méthode à l'objet qui a appellé la méthode.
+Première nouveauté, le "return": c'est simple, ça *renvoie* la résultat de la méthode à l'objet qui a appellé la méthode.
 
 Ici, la méthode "get_planets" *renvoie* la valeur à "exo.get_planets()" et on l'affiche avec "print".
 
