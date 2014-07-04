@@ -31,4 +31,8 @@ En Python, nous allons nous connecter au serveur de la NASA et récupérer des i
 
 # Chapitre 03
 
-...
+En Ruby, nous allons rendre notre app totalement fonctionnelle et apprendre pas mal de nouvelles choses par la même occasion.
+
+# Chapitre 04
+
+En Python, nous allons ...
