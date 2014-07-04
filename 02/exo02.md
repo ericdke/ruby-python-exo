@@ -93,7 +93,7 @@ Hé bien ici l'explication complète est complexe et pas necessaire pour le mome
 
 Disons simplement que ce "self" c'est le même que celui de la ligne suivante, "self.year" et que ça donne l'équivalent de la variable d'instance en Ruby "@year".
 
-*Le "self", tout comme "@", *représente* ici l'appartenance à la classe.*
+*Le "self", tout comme "@", représente ici l'appartenance à la classe.*
 
 Ensuite, on remarque que l'on pioche le deuxième élément du tableau ARGV au lieu du premier comme en Ruby.
 
