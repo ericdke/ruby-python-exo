@@ -355,7 +355,7 @@ Pour le troisième?
 
 donnera 'Nicolas'.
 
-*Le fait que l'index commence à zéro est troublant mais on s'habitude vite.*
+*Le fait que l'index commence à zéro est troublant mais on s'habitue vite.*
 
 Si je fais 
 
@@ -391,7 +391,9 @@ Alors qu'un tableau contient une suite d'éléments uniques, un hash contient un
 
 Comme dans un vrai dictionnaire, où chaque clé "mot" correspond à une valeur "définition du mot".
 
-Et en Ruby comme en Python, un dictionnaire s'écrit... comme du JSON, entre "{" et "}", à la différence qu'il n'y a pas ":" entre la clé et la valeur mais "=>":
+Et en Ruby comme en Python, un dictionnaire s'écrit... comme du JSON, entre "{" et "}". 
+
+A la différence qu'en Ruby il n'y a pas ":" entre la clé et la valeur mais "=>".
 
 ```ruby
 moi = {'âge' => 40, 'prénom' => 'eric', 'sexe' => 'non mais oh'}
