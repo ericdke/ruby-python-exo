@@ -34,7 +34,31 @@ class NasaExo
     print_list(get_names(get_planets))
   end
 
+  def make_details
+    get_planets.map do |obj|
+      {
+        'name' => obj['name'],
+        'class' => obj['mass_class'],
+        'atmosphere' => obj['atmosphere_class'],
+        'composition' => obj['composition_class'],
+        'mass' => obj['mass'],
+        'gravity' => obj['gravity'],
+        'size' => obj['appar_size'],
+        'star' => obj['star']['name'],
+        'constellation' => obj['star']['constellation']
+      }
+    end
+  end
+
+  def print_details
+    puts "\n"
+    make_details.each do |planet_details|
+      planet_details.each {|key, value| puts "#{key.capitalize.ljust(16)} #{value.to_s.capitalize}"}
+      puts "\n"
+    end
+  end
+
 end
 
 exo = NasaExo.new(ARGV[0])
-exo.print_names
+exo.print_details
