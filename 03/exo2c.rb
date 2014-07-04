@@ -43,11 +43,7 @@ class NasaExo
 
 end
 
-
 exo = NasaExo.new(ARGV)
-
 planet_list = exo.get_planets
-
 names = exo.get_names(planet_list)
-
 exo.print_list(names)
