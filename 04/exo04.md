@@ -360,3 +360,18 @@ exo.print_names(planets)
 exo.print_little_ones(planets, 200)
 ```  
 
+Woah, tout a changé! 
+
+En fait non, nous avons simplement organisé la logique de notre app de manière plus... logique.
+
+Non seulement ça permet d'avoir un code plus aisément maintenable et modifiable, mais ça permet aussi de ne pas se répéter: en créant des objets, des petits modules, qui interagissent entre eux.
+
+Je ne fais pas d'analyse étape par étape ici: il n'y a pas de nouveau concept ni de nouvelle syntaxe.
+
+C'est simplement l'architecture du script qui a changé.
+
+## Next
+
+Au prochain et dernier chapitre, nous repasserons en Ruby et étudierons des concepts un peu plus avancés.
+
+Enjoy!

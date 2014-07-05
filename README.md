@@ -35,4 +35,8 @@ En Ruby, nous allons rendre notre app totalement fonctionnelle et apprendre pas 
 
 # Chapitre 04
 
-En Python, nous allons ...
+En Python, nous allons étudier de nouveaux concepts et rendre notre app modulaire.
+
+# Chapitre 05
+
+En Ruby, ajout de fonctions un peu plus avancées pour conclure ce tutoriel.
