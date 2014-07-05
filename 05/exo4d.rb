@@ -9,16 +9,16 @@ class ExoNetwork
     @api_base = 'http://exoapi.com/api/skyhook/'
   end
 
-  def make_url_planets_year year
-    @api_base + 'planets/search?disc_year=' + year
+  def decode_json response
+    JSON.load(response)['response']['results']
   end
 
   def download url
-    RestClient.get(url) {|response, request, result| response}
+    decode_json(RestClient.get(url) {|response, request, result| response})
   end
 
   def download_planets_by_year year
-    JSON.load(download(make_url_planets_year(year)))['response']['results']
+    download("#{@api_base}planets/search?disc_year=#{year}")
   end
 
 end
@@ -29,9 +29,10 @@ class ExoDisplay
     my_list.each {|obj| puts obj}
   end
 
-  def print_details details
+  def print_details liste
     puts "\n"
-    details.compact!.each do |planet_details|
+    # La méthode "compact!" enlève les éléments "nil" si présents
+    liste.compact!.each do |planet_details|
       planet_details.each {|key, value| puts "#{key.capitalize.ljust(16)} #{value.to_s.capitalize}"}
       puts "\n"
     end
@@ -52,20 +53,22 @@ class ExoPlanets
     @display = ExoDisplay.new
   end
 
+  def make_planet obj
+    {
+      'name' => obj['name'],
+      'class' => obj['mass_class'],
+      'atmosphere' => obj['atmosphere_class'],
+      'composition' => obj['composition_class'],
+      'mass' => obj['mass'],
+      'gravity' => obj['gravity'],
+      'size' => obj['appar_size'],
+      'star' => obj['star']['name'],
+      'constellation' => obj['star']['constellation']
+    }
+  end
+
   def get_planets_by_year year
-    @network.download_planets_by_year(year).map do |obj|
-      {
-        'name' => obj['name'],
-        'class' => obj['mass_class'],
-        'atmosphere' => obj['atmosphere_class'],
-        'composition' => obj['composition_class'],
-        'mass' => obj['mass'],
-        'gravity' => obj['gravity'],
-        'size' => obj['appar_size'],
-        'star' => obj['star']['name'],
-        'constellation' => obj['star']['constellation']
-      }
-    end
+    @network.download_planets_by_year(year).map {|obj| make_planet(obj)}
   end
 
   def print_names planet_list
