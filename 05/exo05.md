@@ -11,9 +11,9 @@ Voici notre précédent script Python refait en Ruby, avec quelques amélioratio
 
 On note que les `return` sont omis (en Ruby on ne les indique que si explicitement necessaires).
 
-Egalement disparues: les parenthèses optionnelles, sauf dans les rares cas où je préfère les laisser pour des raisons de lisibilité (notamment lors de l'appel des méthodes, mais c'est un choix personnel).
+Egalement disparues : les parenthèses optionnelles, sauf dans les rares cas où je préfère les laisser pour des raisons de lisibilité (notamment lors de l'appel des méthodes, mais c'est un choix personnel).
 
-De plus, on découvre les conditions 'rightmost' de Ruby, avec le `if` placé après l'objet considéré.
+De plus, on découvre les conditions 'à droite' de Ruby, avec le `if` placé après l'objet considéré.
 
 **exo4d.rb**
 
@@ -109,13 +109,15 @@ exo.print_names(planets)
 exo.print_little_ones(planets, 200)
 ```  
 
-Observons ceci dans notre méthode "print_little_ones":
+Observons ceci dans notre méthode "print_little_ones"&nbsp;:
 
 ```ruby
 littles = planets.map {|planet| planet if planet['mass'] < max_mass}
 ```  
 
-C'est un "syntactic sugar" de Ruby qui permet de placer la condition *après* la variable à évaluer. Ce code est strictement équivalent à:
+C'est un "syntactic sugar" de Ruby qui permet de placer la condition *après* la variable à évaluer. 
+
+Ce code est strictement équivalent à&nbsp;:
 
 ```ruby
 littles = planets.map do |planet|
@@ -131,29 +133,31 @@ Nous n'en n'avons pas encore parlé ici par souci de simplicité, mais une des p
 
 La gestion des erreurs de l'application d'une part; et la gestion des erreurs de l'utilisateur d'autre part.
 
-Erreurs de l'app: toutes les méthodes sont-elles propres et vont-elles s'exécuter correctement dans tous les contextes?
+Erreurs de l'app : toutes les méthodes sont-elles propres et vont-elles s'exécuter correctement dans tous les contextes&nbsp;?
 
-Erreurs de l'utilisateur: que se passe-t-il si, au lieu de faire:
+Erreurs de l'utilisateur&nbsp;: que se passe-t-il si, au lieu de faire&nbsp;:
 
 ```
 > ruby exo4d.rb 2000
 ```  
 
-on fait:
+on fait&nbsp;:
 
 ```
 > ruby exo4d.rb hello
 ```  
 
-On obtient deux choses: une liste de planètes qui ne contient aucune planète, car le serveur EXO n'a pas compris notre requête. Bon, c'est pas bien grave. 
+On obtient deux choses&nbsp;: une liste de planètes qui ne contient aucune planète, car le serveur EXO n'a pas compris notre requête et renvoie un tableau vide. Bon, c'est pas bien grave. 
 
-Mais ensuite, notre script plante ! Car Ruby cherche à boucler dans la liste des planètes mais trouve `nil`, c'est-à-dire "rien", à la place de la liste.
+Mais ensuite, notre script plante&nbsp;! Car Ruby cherche à boucler dans la liste des planètes pour extraire les détails mais trouve `nil` à la place des éléments de la première planète (évidemment puisqu'il n'y a pas de planètes du tout).
 
-On voit donc qu'il faut gérer tout ça. Heureusement, Python et Ruby offrent de nombreux mécanismes pour nous aider. Voici un tout petit aperçu de quelques méthodes.
+On voit donc qu'il faut gérer tout ça. Heureusement, Python et Ruby offrent de nombreux mécanismes pour nous aider. 
+
+Voici un tout petit aperçu de quelques méthodes.
 
 ### Sanitiser les entrées
 
-Affreux anglicisme qui signifie simplement que l'on va vérifier ce que l'utilisateur donne à l'app et agir si quelque chose ne va pas. Exemple:
+Affreux anglicisme qui signifie simplement que l'on va vérifier ce que l'utilisateur donne à l'app et agir si quelque chose ne va pas. Exemple&nbsp;:
 
 ```ruby
 def get_planets_by_year param
@@ -166,15 +170,15 @@ def get_planets_by_year param
 end
 ```  
 
-Nous découvrons le mécanisme `begin/rescue` qui permet d'encapsuler une ou des instructions dans un bloc "begin" et l'exécuter si tout se passe bien, mais qui va lancer le bloc "rescue" si les instructions du bloc "begin" provoquent une erreur.
+Nous découvrons le mécanisme `begin/rescue` qui permet d'encapsuler une ou des instructions dans un bloc `begin` et l'exécuter si tout se passe bien, mais qui va lancer le bloc `rescue` si les instructions du bloc "begin" provoquent une erreur.
 
-Ici nous avons la nouvelle instruction `Integer(param)` qui vérifie que "param" soit un nombre, et provoque une erreur `ArgumentError` si ce n'est pas le cas.
+Ici nous avons la nouvelle instruction `Integer(param)` qui vérifie que `param` soit un nombre, et provoque une erreur `ArgumentError` si ce n'est pas le cas.
 
-C'est donc pour nous un moyen de vérifier que l'utilisateur entre bien une année pour notre script: s'il entre un mot à la place, `Integer(param)` provoque une erreur `ArgumentError` qui est interceptée par le bloc `rescue` qui va alors exécuter son propre contenu au lieu de laisser l'application planter.
+C'est donc pour nous un moyen de vérifier que l'utilisateur entre bien une année pour notre script&nbsp;: s'il entre un mot à la place, `Integer(param)` provoque une erreur `ArgumentError` qui est interceptée par le bloc `rescue` qui va alors exécuter son propre contenu au lieu de laisser l'application planter.
 
-Dans ce bloc `rescue` nous pouvons mettre ce que nous voulons: ici, une instruction `abort` qui stoppe le script et affiche un message, évitant d'aller jusqu'au plantage.
+Dans ce bloc `rescue` nous pouvons mettre ce que nous voulons&nbsp;: ici, une instruction `abort` qui stoppe le script et affiche un message, évitant d'aller jusqu'au plantage.
 
-Bon, mais si maintenant l'utilisateur ne rentre rien ?
+Bon, mais si maintenant l'utilisateur ne rentre rien&nbsp;?
 
 ```
 > ruby exo5a.rb
@@ -184,11 +188,11 @@ exo5a.rb:71:in `Integer': can't convert nil into Integer (TypeError)
   from 05/exo5a.rb:92:in `<main>'
 ```  
 
-Oops ! Plantage. Ruby nous dit qu'il ne sait pas convertir `nil` en nombre: on lui a donné une année qui est "rien" et il ne connaît pas ce nombre, évidemment...
+Oops ! Plantage. Ruby nous dit qu'il ne sait pas convertir `nil` en nombre&nbsp;: on lui a donné une année qui est "rien" et il ne connaît pas ce nombre, évidemment...
 
-Mais Ruby est sympa et nous donne le nom de l'erreur: `TypeError`. 
+Mais Ruby est sympa et nous donne le nom de l'erreur&nbsp;: `TypeError`. 
 
-Nous allons donc ajouter une condition supplémentaire à notre `rescue`:
+Nous allons donc ajouter une condition supplémentaire à notre `rescue`&nbsp;:
 
 ```ruby
 def get_planets_by_year param
@@ -201,7 +205,7 @@ def get_planets_by_year param
 end
 ```  
 
-Nous aurions pu aussi simplement laisser `rescue` sans préciser aucun type d'erreur, mais c'est brutal:
+Nous aurions pu aussi simplement laisser `rescue` sans préciser aucun type d'erreur, mais c'est brutal&nbsp;:
 
 ```ruby
 def get_planets_by_year year
@@ -215,7 +219,7 @@ end
 
 Je déconseille évidemment cette approche. :)
 
-Une autre solution est de placer des valeurs par défaut pour éviter les plantages de ce type. Exemple:
+Une autre solution est de placer des valeurs par défaut pour éviter les plantages de ce type. Exemple&nbsp;:
 
 ```ruby
 def get_planets_by_year year
@@ -234,7 +238,7 @@ Au passage, nous avons vu la méthode `.nil?` qui permet d'exprimer la même cho
 
 mais de manière plus "Rubyesque" à mon goût.
 
-Bon, mais tout ça ne suffit pas ! Regardez ceci par exemple :
+Bon, mais tout ça ne suffit pas&nbsp;! Regardez ceci par exemple&nbsp;:
 
 ```
 > ruby exo5a.rb 1973
@@ -245,13 +249,15 @@ exo5a.rb:34:in `print_details': undefined method `each' for nil:NilClass (NoMeth
   from 05/exo5a.rb:94:in `<main>'
 ```  
 
-Argh ! Aucune planète découverte en 1973, et donc plantage de la boucle qui veut itérer sur une liste qui, pour le coup, n'existe pas.
+Argh ! Aucune planète découverte en 1973, et donc plantage de la boucle.
 
-Hmm, peut-être qu'il faut vérifier que l'année entrée soit correcte ? Mais comment le savoir ? Non, ce n'est pas la bonne approche.
+Hmm, peut-être qu'il faut vérifier que l'année entrée soit correcte &nbsp; Mais comment le savoir&nbsp;? 
+
+Non, ce n'est pas la bonne approche...
 
 Ce qu'il faut faire, c'est éviter que le script plante si une liste de planète est vide, tout simplement.
 
-Nous allons donc ajouter une instruction qui vérifie l'état de la liste et stoppe le script si elle est vide *avant* de déclencher la suite des évènements:
+Nous allons donc ajouter une instruction qui vérifie l'état de la liste et stoppe le script si elle est vide *avant* de déclencher la suite des évènements&nbsp;:
 
 ```ruby
 def get_planets_by_year param
@@ -269,7 +275,7 @@ def get_planets_by_year param
 end
 ```  
 
-On découvre l'instruction `unless`: c'est comme `if` mais à l'envers.
+On découvre l'instruction `unless`&nbsp;: c'est comme `if` mais à l'envers.
 
 Ici, la ligne 
 
@@ -281,9 +287,9 @@ signifie "à moins que `result` ne soit `nil`, alors fais ceci, sinon fais la br
 
 Bon, ça marche, on a intercepté la majorité des risques d'erreur pour cette partie de l'app.
 
-Mais notre méthode "get_planets_by_year" commence à être un peu trop épaisse et mélange plusieurs contextes.
+Mais notre méthode `get_planets_by_year` commence à être un peu trop épaisse et mélange plusieurs contextes.
 
-Quand nous allons ajouter de la gestion d'erreurs ailleurs dans notre app, ça va être un beau bordel avec tous ces messages à afficher !
+Quand nous allons ajouter de la gestion d'erreurs ailleurs dans notre app, ça va être un beau bordel avec tous ces messages à afficher&nbsp;!
 
 Nous allons donc créer une classe "ExoErrors" qui va gérer tout ça.
 
@@ -432,7 +438,7 @@ exo.print_little_ones planètes, 200
 
 Voyons les changements intéressants.
 
-Dans la méthode "download" nous récupérons les trois variables retournées par RestClient dans un seul tableau (grâce aux `[]`). Utile si on veut ensuite débugger les connexions avec `request` et/ou `result`.
+Dans la méthode `download` nous récupérons les trois variables retournées par RestClient dans un seul tableau (grâce aux `[]`). Utile si on veut ensuite débugger les connexions avec `request` et/ou `result`.
 
 Puis on décode `response` qui se trouve au début du tableau (donc `cnx[0]`).
 
@@ -440,21 +446,21 @@ Comme avant, une fois ceci résolu, on en extrait la partie `['response']['resul
 
 Attention à ne pas confondre les variables dont le nom est similaire mais qui ne correspondent pas du tout aux même éléments&nbsp;! 
 
-Si vous êtes perdus, imaginez que vous auriez pu nommer les variables de RestClient comme `|pigeon, merle, corbeau| [pigeon, merle, corbeau]`: ça n'aurait pas changé le fait qu'il faille extraire `['response']['results']` de ce qui aura été décodé par `JSON.load` ensuite. :)
+Si vous êtes perdus, imaginez que vous auriez pu nommer les variables de RestClient comme `|pigeon, merle, corbeau| [pigeon, merle, corbeau]`&nbsp;: ça n'aurait pas changé le fait qu'il faille extraire `['response']['results']` de ce qui aura été décodé par `JSON.load` ensuite.&nbsp;:)
 
 On voit aussi dans cette méthode "download" que j'ai ajouté une interception pour deux types d'erreur de connexion classiques.
 
 En cas d'erreur, on appelle une méthode dans la classe "ExoErrors".
 
-On remarque que cette classe n'a pas été instanciée et n'en a pas besoin: ses méthodes sont des *méthodes de classe* au lieu d'être des *méthodes d'instance*.
+On remarque que cette classe n'a pas été instanciée et n'en a pas besoin&nbsp;: ses méthodes sont des *méthodes de classe* au lieu d'être des *méthodes d'instance*.
 
 Voir la classe elle-même pour la différence de syntaxe. Attention, ce n'est pas tout à fait le même "self" qu'en Python...
 
-Dans "ExoDisplay", on a ajouté une petite méthode "print_excerpt" pour présenter les noms de planètes avec un petit extrait d'informations.
+Dans "ExoDisplay", on a ajouté une petite méthode `print_excerpt` pour présenter les noms de planètes avec un petit extrait d'informations.
 
-C'est ensuite dans "print_details" que l'on trouve le plus de changements.
+C'est ensuite dans `print_details` que l'on trouve le plus de changements.
 
-J'ai éclaté les instructions pour les rendre plus lisibles, mais normalement j'aurais écrit ça de manière plus compacte. Ca n'a en tout cas aucune incidence sur la vitesse d'exécution du script.
+J'ai éclaté les instructions pour les rendre plus lisibles, mais d'habitude j'aurais écrit ça de manière plus compacte. Ca n'a en tout cas aucune incidence sur la vitesse d'exécution du script.
 
 La ligne
 
@@ -462,11 +468,9 @@ La ligne
 sorted = cleaned.sort_by {|obj| obj['masse']}
 ```  
 
-se lit comme de l'anglais: 
+se lit comme de l'anglais&nbsp;: 
 
-dans le tableau `cleaned` (qui contient la liste des planètes sans aucun objet vide), itère sur le contenu et pour chaque objet considère le champ `masse`: trie la liste à partir de ce champ et renvoie le résultat dans `sorted`.
-
-Putain, c'est beau les one-liners. ;)
+dans le tableau `cleaned` (qui contient la liste des planètes sans aucun objet vide), itère sur le contenu et pour chaque objet considère le champ `masse`&nbsp;: trie la liste à partir de ce champ et renvoie le résultat dans `sorted`.
 
 ```ruby
 quantity = cleaned.length
@@ -480,7 +484,7 @@ C'est une variante très pratique du `if/then/else`.
 
 Ca nous permet de nous amuser à moduler une phrase en fonction d'une valeur ou de n'importe quel autre objet évaluable par `case` (ici, `quantity`).
 
-Dans "get_planets_by_year" on découvre `||`&nbsp;:
+Dans `get_planets_by_year` on découvre `||`&nbsp;:
 
 ```ruby
 if result.nil? || result.empty?
@@ -504,5 +508,5 @@ Et même les sujets que nous avons abordé&nbsp;: ils n'ont été qu'effleurés,
 
 Mais le but de ce tutoriel était d'apprendre rapidement l'essentiel des concepts tout en se concentrant sur une tâche concrète, la création d'une application *réelle* et amusante.
 
-Selon votre niveau, vous avez pu vous perdre ou vous ennuyer; j'espère cependant avoir visé assez juste pour vous avoir procuré autant de plaisir à lire ceci que j'en ai eu à l'écrire. :)
+Selon votre niveau, vous avez pu vous perdre ou vous ennuyer; j'espère cependant avoir visé assez juste pour vous avoir procuré autant de plaisir à lire ceci que j'en ai eu à l'écrire.&nbsp;:)
 
