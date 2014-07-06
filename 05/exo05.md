@@ -430,3 +430,79 @@ exo.print_excerpt planètes, année
 exo.print_little_ones planètes, 200
 ```  
 
+Voyons les changements intéressants.
+
+Dans la méthode "download" nous récupérons les trois variables retournées par RestClient dans un seul tableau (grâce aux `[]`). Utile si on veut ensuite débugger les connexions avec `request` et/ou `result`.
+
+Puis on décode `response` qui se trouve au début du tableau (donc `cnx[0]`).
+
+Comme avant, une fois ceci résolu, on en extrait la partie `['response']['results']` et comme c'est la dernière expression évaluée, c'est ce qui est retourné à l'appelant.
+
+Attention à ne pas confondre les variables dont le nom est similaire mais qui ne correspondent pas du tout aux même éléments&nbsp;! 
+
+Si vous êtes perdus, imaginez que vous auriez pu nommer les variables de RestClient comme `|pigeon, merle, corbeau| [pigeon, merle, corbeau]`: ça n'aurait pas changé le fait qu'il faille extraire `['response']['results']` de ce qui aura été décodé par `JSON.load` ensuite. :)
+
+On voit aussi dans cette méthode "download" que j'ai ajouté une interception pour deux types d'erreur de connexion classiques.
+
+En cas d'erreur, on appelle une méthode dans la classe "ExoErrors".
+
+On remarque que cette classe n'a pas été instanciée et n'en a pas besoin: ses méthodes sont des *méthodes de classe* au lieu d'être des *méthodes d'instance*.
+
+Voir la classe elle-même pour la différence de syntaxe. Attention, ce n'est pas tout à fait le même "self" qu'en Python...
+
+Dans "ExoDisplay", on a ajouté une petite méthode "print_excerpt" pour présenter les noms de planètes avec un petit extrait d'informations.
+
+C'est ensuite dans "print_details" que l'on trouve le plus de changements.
+
+J'ai éclaté les instructions pour les rendre plus lisibles, mais normalement j'aurais écrit ça de manière plus compacte. Ca n'a en tout cas aucune incidence sur la vitesse d'exécution du script.
+
+La ligne
+
+```ruby
+sorted = cleaned.sort_by {|obj| obj['masse']}
+```  
+
+se lit comme de l'anglais: 
+
+dans le tableau `cleaned` (qui contient la liste des planètes sans aucun objet vide), itère sur le contenu et pour chaque objet considère le champ `masse`: trie la liste à partir de ce champ et renvoie le résultat dans `sorted`.
+
+Putain, c'est beau les one-liners. ;)
+
+```ruby
+quantity = cleaned.length
+```  
+
+nous donne la longueur du tableau, c'est-à-dire le nombre d'objets planètes.
+
+On attribue ensuite dans la variable `french` le résultat de l'instruction `case/when/else` qui est assez facile à lire et donc à comprendre.
+
+C'est une variante très pratique du `if/then/else`.
+
+Ca nous permet de nous amuser à moduler une phrase en fonction d'une valeur ou de n'importe quel autre objet évaluable par `case` (ici, `quantity`).
+
+Dans "get_planets_by_year" on découvre `||`&nbsp;:
+
+```ruby
+if result.nil? || result.empty?
+```  
+
+ça signifie `or` ("ou") et permet d'évaluer deux conditions. 
+
+Dans notre cas on exécute `ExoErrors.abort_no_info` si `result` est `nil` ou si `result` est vide (donc pas inexistant mais tout de même plantogène).
+
+Dans le même registre on trouve `&&` qui signifie `and` ("et") et dont vous pouvez imaginer la fonction aisément.
+
+Et puis c'est à peu près tout&nbsp;! Le reste a déjà été vu sous une forme ou sous une autre. 
+
+## Voilà !
+
+A partir de ces informations basiques, vous pouvez extrapoler et déjà construire des scripts intéressants.
+
+Bien entendu il y a encore quelques milliards d'autres choses à apprendre&nbsp;: à propos de la programmation elle-même, des langages et de leur syntaxes, des bibliothèques standard, des modules à importer, etc.
+
+Et même les sujets que nous avons abordé&nbsp;: ils n'ont été qu'effleurés, et méritent d'être étudiés bien plus en profondeur.
+
+Mais le but de ce tutoriel était d'apprendre rapidement l'essentiel des concepts tout en se concentrant sur une tâche concrète, la création d'une application *réelle* et amusante.
+
+Selon votre niveau, vous avez pu vous perdre ou vous ennuyer; j'espère cependant avoir visé assez juste pour vous avoir procuré autant de plaisir à lire ceci que j'en ai eu à l'écrire. :)
+
