@@ -5,9 +5,9 @@ allons nous baser sur un exemple concret, à base de NASA et d'exoplanètes&nbsp
 
 ## Initiation
 
-C'est une initiation pour aspirants codeurs, mais qui demande tout de même d'être familier avec quelques outils dont le Terminal.
+C'est une initiation pour aspirants codeurs, mais qui demande tout de même d'être familier avec quelques outils et concepts qui prendraient trop de temps à expliquer ici.
 
-L'idée c'est: vous vous sentez prêt à apprendre mais ne savez pas par quoi commencer ? Alors jetez-vous dans le feu avec moi ! :)
+**L'idée c'est: vous vous sentez prêt à apprendre mais ne savez pas par quoi commencer&nbsp;? Alors jetez-vous dans le feu avec moi&nbsp;! :)**
 
 ## Langages
 
@@ -15,15 +15,19 @@ Nous aborderons les bases de Ruby et de Python par des exemples concrets et surt
 
 ## Comment ça marche
 
-Dans chaque dossier il y a un tutoriel au format Markdown et des exemples de scripts en Ruby et/ou en Python.
+Dans chaque dossier il y a un tutoriel au format Markdown et des scripts en Ruby et/ou en Python.
 
-Consultez le fichier Markdown, et dans votre Terminal entrez dans le dossier pour pouvoir exécuter les exemples.
+- Ouvrez les fichiers `.py` et `.rb` dans un éditeur de code de votre choix
+
+- Consultez les fichiers Markdown soit sur GitHub, soit avec une app de type "Marked" ou encore avec un éditeur de texte/code
+
+- Exécutez les scripts dans le Terminal
 
 # Chapitre 01
 
 En Ruby, nous verrons comment créer une mini app qui accepte des paramètres sur la ligne de commande puis les affiche.
 
-Par cet exemple nous allons découvrir comment structurer un petit script, les concepts de base de la programmation orientée objet, les structures pour stocker et manipuler des données, etc.
+Par cet exemple nous allons découvrir comment structurer un petit script, les concepts *de base* de la programmation orientée objet, les structures pour stocker et manipuler des données, etc.
 
 # Chapitre 02
 
@@ -31,11 +35,11 @@ En Python, nous allons nous connecter au serveur de la NASA et récupérer des i
 
 # Chapitre 03
 
-En Ruby, nous allons rendre notre app totalement fonctionnelle et apprendre pas mal de nouvelles choses par la même occasion.
+En Ruby, nous allons rendre notre app totalement fonctionnelle et apprendre pas mal de concepts importants par la même occasion.
 
 # Chapitre 04
 
-En Python, nous allons étudier de nouveaux concepts et rendre notre app modulaire.
+En Python, nous allons étudier de nouvelles idées et rendre notre app modulaire.
 
 # Chapitre 05
 
