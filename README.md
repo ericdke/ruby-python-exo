@@ -39,4 +39,4 @@ En Python, nous allons étudier de nouveaux concepts et rendre notre app modulai
 
 # Chapitre 05
 
-En Ruby, ajout de fonctions un peu plus avancées pour conclure ce tutoriel.
+En Ruby, ajout de gestion d'erreurs et de fonctions un peu plus avancées pour conclure ce tutoriel.

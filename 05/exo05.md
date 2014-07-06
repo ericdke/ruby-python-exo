@@ -245,7 +245,7 @@ exo5a.rb:34:in `print_details': undefined method `each' for nil:NilClass (NoMeth
   from 05/exo5a.rb:94:in `<main>'
 ```  
 
-Argh ! Aucune planète découverte en 1973, et donc plantage.
+Argh ! Aucune planète découverte en 1973, et donc plantage de la boucle qui veut itérer sur une liste qui, pour le coup, n'existe pas.
 
 Hmm, peut-être qu'il faut vérifier que l'année entrée soit correcte ? Mais comment le savoir ? Non, ce n'est pas la bonne approche.
 
@@ -312,11 +312,11 @@ class ExoNetwork
 
   def download url
     begin
-      result = RestClient.get(url) {|response, request, result| response}
+      cnx = RestClient.get(url) {|response, request, result| [response, request, result]}
     rescue SocketError, SystemCallError
       ExoErrors.abort_cnx
     end
-    JSON.load(result)['response']['results']
+    JSON.load(cnx[0])['response']['results']
   end
 end
 
@@ -417,7 +417,8 @@ class ExoErrors
     abort "\nOops ! Le serveur n'a retourné aucune information. Veuillez recommencer avec une année valide.\n\n"
   end
   def self.abort_no_year
-    abort "\nErreur ! Veuillez préciser une année (ex : 'ruby exo.rb 2000').\n\n"
+    puts "\nErreur ! Veuillez préciser une année (ex : 'ruby exo.rb 2000').\n\n"
+    exit
   end
 end
 
