@@ -5,7 +5,7 @@ allons nous baser sur un exemple concret, à base de NASA et d'exoplanètes&nbsp
 
 Si vous n'avez pas suivi, commencez donc au [premier chapitre]().
 
-## De retour à Python!
+## De retour à Python !
 
 Voici notre précédent script Ruby traduit en Python.
 
@@ -73,29 +73,29 @@ exo = NasaExo(sys.argv)
 exo.print_details()
 ```  
 
-Une nouveauté cependant, dans la méthode "get_names":
+Une nouveauté cependant, dans la méthode `get_names`&nbsp;:
 
 ```python
 return [planet['name'] for planet in planet_list]
 ```  
 
-On appelle ça une "comprehension list" et c'est la même fonctionnalité que ".map" en Ruby.
+On appelle ça une "comprehension list" et c'est la même fonctionnalité que `.map` en Ruby.
 
 Ici, on crée une liste contenant chaque élément `planet['name']` de chaque `planet` dans `planet_list`, puis on la retourne au demandeur.
 
-Autre chose: la méthode "print_details" est sensiblement différente. Les raisons sont complexes et il est trop tôt pour les aborder, ça compliquerait trop ce tutoriel (indice: les dictionnaires ne sont pas ordonnés en Python).
+Autre chose: la méthode `print_details` est sensiblement différente. 
+
+Les raisons sont complexes et il est trop tôt pour les aborder, ça compliquerait trop ce tutoriel (indice&nbsp;: les dictionnaires ne sont pas ordonnés en Python).
 
 ## Nouveaux concepts
 
-Je vous ai entraîné jusqu'à présent vers une manière de coder très *objet*, car j'aime ça.
-
-Mais on peut aussi utiliser des outils qui viennent de la programmation procédurale: les conditions.
+Voyons maintenant les "conditions".
 
 Par exemple, vous voulez afficher une planète de la liste *uniquement* si sa taille est inférieure à une valeur de votre choix.
 
 Nous allons utiliser pour cela `if`.
 
-Mais avant de l'utiliser dans notre app, un petit exemple tout simple:
+Mais avant de l'utiliser dans notre app, un petit exemple tout simple&nbsp;:
 
 **exo4a.py**
 
@@ -114,11 +114,13 @@ print longueur, "lettres"
 > python exo4a.py bonjour
 ```  
 
-Résultat: "Mot long: 7 lettres".
+Résultat: 
+
+`Mot long: 7 lettres`
 
 Simplissime: "si" condition remplie alors option 1, "sinon" option 2.
 
-Un autre exemple:
+Un autre exemple :
 
 **exo4b.py**
 
@@ -144,17 +146,17 @@ Vous avez remarqué le "double égal", `==` ?
 
 En Python comme en Ruby et comme dans la plupart des langages, on *attribue* avec `=` et on *compare* avec `==`.
 
-Ben voilà, vous en savez à peu près assez pour passer à la suite du développement de notre app. :)
+Ben voilà, vous en savez à peu près assez pour passer à la suite du développement de notre app.&nbsp;:)
 
-## Go!
+## Go !
 
-Nous disions donc: vous voulez afficher une planète de la liste *uniquement* si sa taille est inférieure à une valeur de votre choix.
+Nous disions donc : vous voulez afficher une planète de la liste *uniquement* si sa taille est inférieure à une valeur de votre choix.
 
-En astronomie, une masse de 1 représente la même masse que la Terre: une masse de 2 représente le double, etc.
+En astronomie, une masse de 1 représente la même masse que la Terre&nbsp;: une masse de 2 représente le double, 3 le triple, etc.
 
 Disons qu'on va chercher les planètes inférieures à une masse de 200 (il n'y en a pas beaucoup).
 
-Nous allons partir du résultat donné par notre méthode "make_details" et faire un tri (dans une nouvelle méthode "print_little_ones"):
+Nous allons partir du résultat donné par notre méthode `make_details` et faire un tri (dans une nouvelle méthode `print_little_ones`):
 
 **exo4c.py**
 
@@ -236,9 +238,9 @@ On récupère la liste des planètes avec
 planets = exo.make_details()
 ```  
 
-puis on appelle notre nouvelle méthode "print_little_ones" avec deux arguments&nbsp;: cette liste de planètes, et la valeur pour notre filtre.
+puis on appelle notre nouvelle méthode `print_little_ones` avec deux arguments&nbsp;: cette liste de planètes, et la valeur pour notre filtre.
 
-La méthode récupère la liste et la valeur et les stocke dans deux variables, "planets" et "max_mass":
+La méthode récupère la liste et la valeur et les stocke dans deux variables, `planets` et `max_mass`&nbsp;:
 
 ```python
 def print_little_ones(self, planets, max_mass):
@@ -246,9 +248,9 @@ def print_little_ones(self, planets, max_mass):
 
 Ensuite nous créons une liste vide.
 
-Puis nous itérons sur la liste "planets", en déclarant chacun des objets de cette liste comme étant nommé "planet".
+Puis nous itérons sur la liste `planets`, en déclarant chacun des objets de cette liste comme étant nommé `planet`.
 
-Vient notre condition:
+Vient notre condition :
 
 ```python
 if planet['mass'] < max_mass:
@@ -256,21 +258,19 @@ if planet['mass'] < max_mass:
 
 On récupère la valeur donnée par le serveur pour la masse de la planète avec `planet['mass']` puis on demande si cette valeur est inférieure (`<`) à la valeur que l'on a fourni à la méthode (`max_mass`).
 
-Si le résultat se vérifie (on dit: si le résultat est "True"), alors l'instruction imbriquée pour ajouter cette planète à notre nouvelle liste sera exécutée: sinon, Python passe à la suite (la prochaine planète).
+Si la condition se vérifie (on dit: si le résultat est "True"), alors l'instruction imbriquée pour ajouter cette planète à notre nouvelle liste sera exécutée&nbsp;: sinon, Python passe à la suite (la prochaine planète).
 
-On appelle alors notre méthode pré-existante "print_details" en lui passant notre nouvelle liste, et on conclut pour le plaisir avec un décompte du nombre de planètes correspondant à notre requête.
+On appelle alors notre méthode pré-existante `print_details` en lui passant notre nouvelle liste, et on conclut pour le plaisir avec un décompte du nombre de planètes correspondant à notre requête.
 
-Ce qui serait bien, c'est de pouvoir donner à la ligne de commande des options pour décider si on veut récupérer toutes les planètes, ou alors avec des conditions, n'en récupérer qu'un certain nombre, etc.
-
-Nous étudierons tout cela dans le dernier chapitre; en attendant, nous allons ajouter encore quelques éléments et modifier la structure.
+Nous allons maintenant ajouter quelques éléments et modifier la structure.
 
 ## Classes
 
 Notre script commence à prendre de l'ampleur, et je trouve que notre classe NasaExo est désordonnée.
 
-Elle contient du code qui ne concerne que l'affichage de listes: ce code n'a rien à faire dans une classse dédiée à la Nasa. Pareil avec les parties concernant le réseau.
+Elle contient du code qui ne concerne que l'affichage de listes&nbsp;: ce code n'a rien à faire dans une classse dédiée à la Nasa. Pareil avec les parties concernant le réseau.
 
-Nous allons déplacer ces méthodes dans des classes "ExoDisplay" et "ExoNetwork" et rationaliser notre script dans un souci de modularité:
+Nous allons déplacer ces méthodes dans des classes "ExoDisplay" et "ExoNetwork" et rationaliser notre script dans un souci de modularité&nbsp;:
 
 **exo4d.py**
 
@@ -360,13 +360,13 @@ exo.print_names(planets)
 exo.print_little_ones(planets, 200)
 ```  
 
-Woah, tout a changé! 
+Woah, tout a changé&nbsp;! 
 
 En fait non, nous avons simplement organisé la logique de notre app de manière plus... logique.
 
-Non seulement ça permet d'avoir un code plus aisément maintenable et modifiable, mais ça permet aussi de ne pas se répéter: en créant des objets, des petits modules, qui interagissent entre eux.
+Non seulement ça permet d'avoir un code plus aisément maintenable et modifiable, mais ça permet aussi de ne pas se répéter&nbsp;: en créant des objets, des petits modules, qui interagissent entre eux.
 
-Je ne fais pas d'analyse étape par étape ici: il n'y a pas de nouveau concept ni de nouvelle syntaxe.
+Je ne fais pas d'analyse étape par étape ici&nbsp;: il n'y a pas de nouveau concept ni de nouvelle syntaxe.
 
 C'est simplement l'architecture du script qui a changé.
 
@@ -374,4 +374,4 @@ C'est simplement l'architecture du script qui a changé.
 
 Au prochain et dernier chapitre, nous repasserons en Ruby et étudierons des concepts un peu plus avancés.
 
-Enjoy!
+Enjoy&nbsp;!
