@@ -7,13 +7,13 @@ Si vous n'avez pas suivi, commencez donc au [premier chapitre]().
 
 ## Finissons sur du Ruby
 
-Voici notre précédent script Python refait en Ruby.
-
-Pas vraiment de grandes différences: deux ou trois particularités syntaxiques et quelques améliorations dans nos méthodes au passage.
+Voici notre précédent script Python refait en Ruby, avec quelques améliorations au passage.
 
 On note que les `return` sont omis (en Ruby on ne les indique que si explicitement necessaires).
 
 Egalement disparues: les parenthèses optionnelles, sauf dans les rares cas où je préfère les laisser pour des raisons de lisibilité (notamment lors de l'appel des méthodes, mais c'est un choix personnel).
+
+De plus, on découvre les conditions 'rightmost' de Ruby, avec le `if` placé après l'objet considéré.
 
 **exo4d.rb**
 
@@ -51,17 +51,16 @@ class ExoDisplay
 
   def print_details liste
     puts "\n"
-    # La méthode "compact!" enlève les éléments "nil" si présents
     liste.compact!.each do |planet_details|
       planet_details.each {|key, value| puts "#{key.capitalize.ljust(16)} #{value.to_s.capitalize}"}
       puts "\n"
     end
+    puts "#{liste.length} planets found in the database for this request\n"
   end
 
   def print_little_ones planets, max_mass
     littles = planets.map {|planet| planet if planet['mass'] < max_mass}
     print_details(littles)
-    puts "#{littles.length} planets found in the database for this request\n"
   end
 
 end

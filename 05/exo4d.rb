@@ -31,17 +31,16 @@ class ExoDisplay
 
   def print_details liste
     puts "\n"
-    # La méthode "compact!" enlève les éléments "nil" si présents
     liste.compact!.each do |planet_details|
       planet_details.each {|key, value| puts "#{key.capitalize.ljust(16)} #{value.to_s.capitalize}"}
       puts "\n"
     end
+    puts "#{liste.length} planets found in the database for this request\n"
   end
 
   def print_little_ones planets, max_mass
     littles = planets.map {|planet| planet if planet['mass'] < max_mass}
     print_details(littles)
-    puts "#{littles.length} planets found in the database for this request\n"
   end
 
 end
