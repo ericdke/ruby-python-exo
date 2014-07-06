@@ -13,14 +13,12 @@ L'idée c'est: vous vous sentez prêt à apprendre mais ne savez pas par quoi co
 
 Nous allons nous adresser à une API de la NASA.
 
-Une APi est un peu la partie accessible, programmaticalement, d'une autre application que la votre. Et la votre "discute" avec cette API.
+Une API est, pour résumer, la partie accessible programmaticalement d'une autre application que la votre. 
+
+Et la votre "discute" avec cette API.
 
 Dans notre cas, nous voulons nous initier à la programmation en utilisant une
-API de la NASA. 
-
-Celle-ci met à notre disposition de nombreux serveurs contenant
-de nombreuses informations; nous allons utiliser celui qui s'intéresse aux
-exoplanètes.
+API de la NASA, "Exo", qui s'intéresse aux exoplanètes.
 
 Mais nous n'allons pas demander de login et mot de passe, ni entrer dans un
 serveur à la main, rien de tout cela: nous allons *programmer*, créer une app.
@@ -29,21 +27,22 @@ Notre minuscule application va se connecter au serveur de la NASA, poser notre
 question, récupérer la réponse, la traiter et l'afficher.
 
 Ce tutorial se veut rapide et fun; pour aller dans ce sens, j'expliquerai
-quelques notions de base, mais irai, également, rapidement à l'essentiel: si vous ne comprenez pas un terme ou un concept, pas de panique, cherchez sur ce blog et sur le Web puis revenez ici. :)
+quelques notions de base, mais irai, également, rapidement à l'essentiel&nbsp;: si vous ne comprenez pas un terme ou un concept, pas de panique, cherchez sur ce blog et sur le Web puis revenez ici.&nbsp;:)
 
 ### Un autre: JSON
 
-Le serveur de la NASA (nous utiliserons désormais son nom: EXO) va nous
+Le serveur de la NASA (nous utiliserons désormais son nom&nbsp;: EXO) va nous
 répondre avec un format bien précis: le JSON.
 
-C'est-à-dire que nous n'allons pas obtenir ni des pages web ni des fichier mais du texte, organisé par un protocole précis.
+C'est-à-dire que nous n'allons pas obtenir ni des pages web ni des fichiers mais du texte, organisé par un protocole précis.
 
-Ce format, le JSON, permet de représenter des données de façon sérialisée. Mais
-vous allez voir c'est très simple.
+Ce format, le `JSON`, permet de représenter des données de façon sérialisée. 
 
-Exemple de réponse JSON du genre Internet Movie DataBase:
+Mais vous allez voir, c'est très simple.
 
-```
+Imaginons que votre app demande à l'API de l'IMdB ("Internet Movie DataBase") de lui fournir deux films d'après certains critères; voici ce que pourrait être sa réponse au format JSON&nbsp;:
+
+```json
 {
   'meta': {
     'code': 200,
@@ -62,21 +61,23 @@ Exemple de réponse JSON du genre Internet Movie DataBase:
 }
 ```  
 
-Chaque objet est délimité par `{}`. Des containers représentés par `[]` peuvent contenir plusieurs objets dans la même section. On sépare les éléments avec ',' et ':'.
+Chaque objet est délimité par `{}`. 
 
-On peut aussi avoir l'exemple précédent de manière compacte:
+Des containers représentés par `[]` peuvent contenir plusieurs objets. 
+
+On sépare les éléments avec `,` et `:`.
+
+On peut aussi représenter l'exemple précédent de manière compacte:
 
 ```
 {'meta':{'code':200,'message':'ok'},'data':[{'title':'2001 A space odyssey','year':1968},{'title':'Back to the Future','year':1985}]}
 ```  
 
-C'est exactement la même chose.
+C'est exactement le même contenu.
 
-Et c'est typiquement une réponse de serveur en JSON: un champ 'meta' qui décrit l'état de la réponse (succès, échec, taille, etc) et un champ 'data' qui décrit le contenu de la réponse.
+Et c'est typiquement une réponse de serveur en JSON&nbsp;: un champ 'meta' qui décrit l'état de la réponse (code de succès ou échec, taille des éléments de la réponse, type du serveur, etc) et un champ 'data' qui décrit le contenu de la réponse.
 
-Ici, le champ 'meta' contient un champ 'code' qui contient un nombre, le code de la réponse (nous y reviendrons plus tard), et un champ 'message' qui contient une chaîne de caractères décrivant la réponse.
-
-Ensuite, le champ 'data' contient un groupe d'objets (ici, deux) contenant chacun un champ 'title' et un champ 'year'.
+Le champ 'data' contient un groupe d'objets (deux dans notre exemple) contenant chacun un champ 'title' et un champ 'year'.
 
 
 ## Notre application
@@ -85,19 +86,17 @@ La première mouture de notre application peut se décrire en français:
 
 ```
 Se connecter au serveur EXO de la NASA
-Demander des infos, par exemple quelles exoplanètes ont-elles été découvertes en l'an 2000
+Demander quelles exoplanètes ont-elles été découvertes en l'an 2000
 Récupérer la réponse au format JSON
-Trier les éléments fournis, au besoin les modifier
-Afficher les éléments de son choix
+Trier les objets fournis
+Afficher les objets de notre choix
 ```  
 
 Nous allons essayer de coder ça en Ruby *et* en Python, indifféremment, histoire d'explorer ces deux langages.
 
-Je connais bien Ruby, mais je suis encore amateur en Python, donc ça devrait être amusant... et instructif.
+Si vous ne savez pas par quel langage commencer l'apprentissage de la programmation et que, comme tout le monde, vous êtes attirés par Ruby et Python...
 
-Si par exemple vous ne savez pas par quel langage commencer l'apprentissage de la programmation et que, comme tout le monde, vous voulez commencer par un langage "facile", vous hésitez forcément entre ces deux-là...
-
-Peut-être cet article saura-t-il vous aider à sauter le pas !
+...peut-être cet article saura-t-il vous aider à sauter le pas&nbsp;!
 
 ## Python et Ruby
 
@@ -105,15 +104,15 @@ Python et Ruby sont des langages de programmation scriptés, c'est-à-dire qu'il
 
 Il n'y a pas de dernière étape de "compilation" pour transformer le code en exécutable machine: ça se fait à la volée, au fur et à mesure.
 
-On ne transforme pas le code en application: le code *est* l'application.
+On ne transforme pas le code en application: pour résumer, le code *est* l'application.
 
 Ces deux langages sont très proches l'un de l'autre dans leur fonctionnement; ils sont tous les deux "orienté objet".
 
 Cela signifie que les blocs de code manipulent des objets, des abstractions, et ces objets peuvent émettre et recevoir des messages - qui sont aussi des objets.
 
-N'ayez pas peur, ça va s'éclaircir très vite, prenons pour ça un exemple simplissime.
+N'ayez pas peur, ça va s'éclaircir très vite, prenons pour ça un exemple tout simple.
 
-## Exemple _presque_ super basique
+## Exemple basique
 
 Le fameux Hello World. 
 
@@ -121,7 +120,7 @@ Principe: on veut afficher "Hello World!" à l'écran.
 
 Mais au lieu de m'en tenir à l'explication des mécanismes de base, comme le font tous les tutoriels, je vais directement vous plonger dans le grand bain. 
 
-On va apprendre à vitesse grand V, ça va chier !
+On va apprendre à toute vitesse&nbsp;!
 
 ### Objets, classes, méthodes
 
@@ -149,7 +148,7 @@ action = Saluer.new
 action.dire_bonjour
 ```  
 
-Bon alors, c'est simple et c'est compliqué en même temps. Voyons ce qu'il se passe.
+Bon alors, c'est simple et c'est compliqué en même temps. 
 
 Tout d'abord, on remarque que le code est indenté.
 
@@ -169,11 +168,13 @@ qui se trouve à l'intérieur de la classe
 
 `Saluer`.
 
-En revanche, les deux dernières lignes ne sont pas indentées, elles restent au niveau racine du script.
+En revanche, les deux dernières lignes ne sont pas indentées, elles restent au niveau racine du script&nbsp;: elles ne font pas partie de la classe.
 
-*En Ruby, l'indentation est la plupart du temps cosmétique et n'a donc pas d'autre importance que la lisibilité du script... mais c'est cependant important de respecter ces conventions.*
+*En Ruby, l'indentation est la plupart du temps cosmétique et n'a donc pas d'autre importance que la lisibilité du script... mais il est cependant important de respecter ces conventions.*
 
-Pour faire une indentation, tapez la touche `TAB` sur votre clavier. Si votre éditeur de code est bien réglé, chaque TAB sera transformée, pour Ruby, en deux espaces (pour Python nous en reparlerons plus tard).
+Pour faire une indentation, tapez la touche `TAB` sur votre clavier. 
+
+Si votre éditeur de code est bien réglé, chaque TAB sera transformée, pour Ruby, en deux espaces (également par convention).
 
 Avant d'expliquer la suite je vais rajouter une méthode dans la classe, ainsi qu'une instruction à la fin:
 
@@ -199,9 +200,9 @@ action.dire_bonjour
 action.dire_au_revoir
 ```  
 
-Savez-vous deviner ce que fait réellement ce script ? Même si vous ne comprenez pas trop, lisez-le plusieurs fois, analysez son contenu: on voit une classe, des "def", des "puts"... mais que sont ces choses ?
+Savez-vous deviner ce que fait ce script&nbsp;?
 
-Allons-y ligne par ligne (sur exo1a.rb).
+Allons-y ligne par ligne (sur `exo1a.rb`).
 
 1: nous créons la classe "Saluer". A cette ouverture correspond une fermeture avec le mot-clé "end":
 
@@ -373,7 +374,9 @@ donne
 
 `'eric@aya.io'`
 
-Oui, ça marche comme ça pour les *tableaux imbriqués*.
+Oui, ça marche comme ça pour les *tableaux imbriqués*. 
+
+`mes_tableaux[1]` renvoie le tableau `emails`, et l'index `[0]` de ce tableau est `'eric@aya.io'`&nbsp;: voilà le sens de ce `mes_tableaux[1][0]`.
 
 Et donc, pour notre ARGV? Ben si l'utilisateur ne demande qu'une année, elle sera automatiquement en première position, donc d'index `0`.
 
@@ -414,9 +417,9 @@ puts "Et on s'arrêtera là, " + moi['sexe']
 
 C'est le même principe que pour les tableaux, mais au lieu de [index] on a ['clé'] pour retrouver les valeurs.
 
-Au passage, on vient de voir que "+" en Ruby n'est pas fait que pour le calcul. :)
+Au passage, on vient de voir que "+" en Ruby n'est pas fait que pour le calcul.&nbsp;:)
 
-*Rappel: vous vous souvenez qu'on appelle des méthodes sur des objets via un point ?*
+*Rappel&nbsp;: vous vous souvenez qu'on appelle des méthodes sur des objets via un point&nbsp;?*
 
 En Ruby tout est objet, et la plupart des objets ont déjà plein de méthodes prédéfinies par le langage.
 
@@ -470,7 +473,7 @@ puts "J'ai " + moi['âge'].to_s + " ans"
 
 Il y a d'autres manières de s'y prendre mais ceci me semblait necessaire pour la suite.
 
-Bon, fini la théorie, allons coder notre app !
+Bon, fini la théorie, allons coder notre app&nbsp;!
 
 ## Récupérer une info de l'utilisateur
 
@@ -478,7 +481,7 @@ Commençons par vérifier qu'on sait bien comment récupérer ce que demande l'u
 
 On a dit qu'on voulait récupérer une année, par exemple 2000.
 
-Alors commencons par ne faire que ça, mais dans une structure capable d'évoluer par la suite:
+Alors commencons par ne faire que ça, mais dans une structure capable d'évoluer par la suite&nbsp;:
 
 **exo2.rb**
 
@@ -500,9 +503,9 @@ exo = NasaExo.new(ARGV)
 exo.what_year
 ```  
 
-Ah! Il y a là pas mal de nouveautés. Mais c'est plutôt simple, suivez le guide...
+Ah&nbsp;! Il y a là pas mal de nouveautés. Mais c'est plutôt simple, suivez le guide...
 
-Commençons par les deux dernières lignes. Que voit-on? 
+Commençons par les deux dernières lignes. Que voit-on&nbsp;? 
 
 Une classe, que nous avons définie au début du script, est instanciée *avec un paramètre* (ce paramètre est ARGV) dans un objet nommé 'exo', puis une méthode (what_year) de cette classe est appellée sur cet objet.
 
@@ -520,7 +523,7 @@ Cette valeur c'est dans notre exemple `ARGV`, qui souvenez-vous est une constant
 
 La classe récupère cette valeur lors de son instanciation et la fait sienne grâce à la méthode nommée 'initialize'.
 
-La méthode 'initialize' prend un paramètre, étiquetté ici 'params' dans sa définition, mais j'aurais pu le nommer comme bon me semble, genre 'chameau' ou 'fesse'. Mais bon... il vaut mieux s'efforcer de toujours être explicite et dans le contexte. :)
+La méthode 'initialize' prend un paramètre, étiquetté ici 'params' dans sa définition, mais j'aurais pu le nommer comme bon me semble, genre 'chameau' ou 'fesse'. Mais bon... il vaut mieux s'efforcer de toujours être explicite et dans le contexte.&nbsp;:)
 
 Le contenu de ce paramètre (chez nous ce sera donc ARGV lors de l'instanciation) est transféré dans une variable dite *variable d'instance* (car elle est accessible par toutes les méthodes de l'objet instancié), qui est représentée par 
 
@@ -532,7 +535,7 @@ La ligne
 
 `exo = NasaExo.new(ARGV)` 
 
-signifie donc: 
+signifie donc&nbsp;: 
 
 **dis Ruby, crée je te prie une nouvelle instance de la classe 'NasaExo' dans la variable 'exo', et initialise au passage à l'intérieur de cette instance une variable '@year' à partir du contenu de ARGV.**
 
@@ -540,7 +543,7 @@ Ensuite nous voyons que la méthode 'initialize' dans notre classe ne fait pas q
 
 *Je résume: ARGV, qui contient un tableau, est passé à la classe NasaExo qui s'instancie avec une variable contenant la première valeur de ce tableau.*
 
-C'est pas clair? Regardez cet autre exemple:
+C'est pas clair&nbsp;? Regardez cet autre exemple&nbsp;:
 
 ```ruby
 class JeParleToutSeul
@@ -556,7 +559,7 @@ Si vous instanciez la classe avec par exemple
 
 la phrase "Héhé ahah ohoh" sera affichée! Alors que nous n'avons pas encore appelé de méthode!
 
-C'est que "initialize", si présent, est *toujours* exécuté lors de l'instanciation d'une classe, tout simplement. Et avec une valeur?
+C'est que "initialize", si présent, est *toujours* exécuté lors de l'instanciation d'une classe, tout simplement. Et avec une valeur&nbsp;?
 
 ```ruby
 class JeParleToutSeul
@@ -574,7 +577,7 @@ et vous obtenez la sortie "Héhé ahah ohoh hihi" automatiquement.
 
 *Bon, revenons à notre app.*
 
-Exécutez `exo2.rb` en lui donnant une année en paramètre:
+Exécutez `exo2.rb` en lui donnant une année en paramètre&nbsp;:
 
 ```
 > ruby exo2.rb 2014
@@ -586,15 +589,15 @@ Vous devriez voir :
 
 Sinon, c'est qu'il y a un Gremlin quelque part...
 
-Rappel du principe que nous venons d'étudier:
+Rappel du principe que nous venons d'étudier&nbsp;:
 
 *Classe contenant le code => instanciation dans un objet => transfert de ARGV[0] dans @year => appel d'une méthode qui affiche un texte puis le contenu de @year*
 
-Si ça marche, et que vous avez suivi sans trop décrocher... BRAVO !!! 
+Si ça marche, et que vous avez suivi sans trop décrocher... BRAVO&nbsp;!!! 
 
 Le plus dur est fait ! Je ne plaisante pas. Si vous avez compris tout ça, vous savez déjà programmer en Ruby. 
 
-Je veux dire: vous savez faire un pas, donc vous allez savoir marcher bientôt, et même courir. :)
+Je veux dire: vous savez faire un pas, donc vous allez savoir marcher bientôt, et même courir.&nbsp;:)
 
 ## J'veux des planètes !
 
@@ -602,7 +605,7 @@ Au prochain épisode. :)
 
 J'ai beaucoup détaillé au début pour dégrossir, la prochaine fois on va accélérer un peu et ainsi vite arriver à notre vraie app.
 
-Après nos exercices, on peut maintenant reformuler notre app en français:
+Après nos exercices, on peut maintenant reformuler notre app en français&nbsp;:
 
 ```
 1. Récupérer une année indiquée par l'utilisateur, par exemple 2012
@@ -612,7 +615,6 @@ Après nos exercices, on peut maintenant reformuler notre app en français:
 5. Trier les éléments fournis
 6. Gérer les éventuelles erreurs
 7. Préparer un affichage avec ce qui nous intéresse
-8. Si demandé, enregistrer les résultats dans un fichier
 ```  
 
 ## Résumé
@@ -629,4 +631,4 @@ On manipule des objets qui se passent des messages entre eux... sous forme d'obj
 
 Si c'est encore un peu abstrait/étrange c'est bien normal, et puis nous n'avons fait qu'effleurer ces concepts, sous forme simplifiée...
 
-Rendez-vous au prochain article pour faire monter la température ! 
+Rendez-vous au prochain article pour faire monter la température&nbsp;! 

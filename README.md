@@ -27,7 +27,7 @@ Dans chaque dossier il y a un tutoriel au format Markdown et des scripts en Ruby
 
 En Ruby, nous verrons comment créer une mini app qui accepte des paramètres sur la ligne de commande puis les affiche.
 
-Par cet exemple nous allons découvrir comment structurer un petit script, les concepts *de base* de la programmation orientée objet, les structures pour stocker et manipuler des données, etc.
+Par cet exemple nous allons découvrir comment structurer un petit script, les concepts de base, les structures pour stocker et manipuler des données, etc.
 
 # Chapitre 02
 
