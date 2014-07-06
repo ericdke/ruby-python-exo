@@ -5,11 +5,11 @@ allons nous baser sur un exemple concret, à base de NASA et d'exoplanètes&nbsp
 
 Si vous n'avez pas suivi, commencez donc au [premier chapitre]().
 
-## Python => Ruby
+## Python = False, Ruby = True
 
 Pour ce tutoriel nous allons revenir à Ruby.
 
-J'ai donc traduit notre précédent script: observez les différences, les points communs... nous allons bien sûr voir ça étape par étape.
+J'ai donc traduit notre précédent script&nbsp;: observez les différences, les points communs... nous allons bien sûr voir ça étape par étape.
 
 **exo2c.rb**
 
@@ -65,7 +65,7 @@ names = exo.get_names(planet_list)
 exo.print_list(names)
 ```  
 
-Si vous exécutez ce script:
+Si vous exécutez ce script :
 
 ```
 > ruby exo2c.rb 2000
@@ -73,61 +73,63 @@ Si vous exécutez ce script:
 
 vous obtenez exactement le même résultat qu'en Python.
 
-Ligne 1:
+Ligne 1 :
 
 `#!/usr/bin/env ruby`
 
-informe le système d'exploitation que le contenu de ce fichier est du Ruby exécutable. On n'a pas besoin d'approfondir ça pour le moment, mais ça servira plus tard.
+informe le système d'exploitation que le contenu de ce fichier est du Ruby exécutable. On n'a pas besoin d'approfondir ça pour le moment, mais ça vous servira plus tard.
 
-Ligne 2: comme on avait fait en Python, on a rajouté ici une ligne qui _force_ Ruby à utiliser l'encodage de caractères UTF-8.
+Ligne 2 : comme on avait fait en Python, on a rajouté ici une ligne qui _force_ Ruby à utiliser l'encodage de caractères UTF-8.
 
-Lignes 3 et 4: on importe les modules pour traiter le JSON et pour se connecter au serveur.
+Lignes 3 et 4 : on importe les modules pour traiter le JSON et pour se connecter au serveur.
 
-Précision: il se peut que votre installation de Ruby ne contienne pas le module "rest client". Il faudra alors l'installer:
+Précision : il se peut que votre installation de Ruby ne contienne pas le module "rest client". Il faudra alors l'installer:
 
 `> gem install rest-client`
 
-Ce module nous servira à créer une méthode perso "download" qui aura la même fonction que le module importé "urllib" de Python.
+Ce module nous servira à créer une méthode perso `download` qui aura la même fonction que le module importé `urllib` de Python.
 
-Ensuite on crée notre classe et nos méthodes (pas de parenthèses à la fin si pas de paramètres). J'ai ajouté dans la méthode d'initialisation une variable d'instance contenant la base de l'URL de EXO, exactement comme en Python.
+Ensuite on crée notre classe et nos méthodes (pas de parenthèses à la fin si pas de paramètres). 
 
-Dans "get_planets", ligne 2: on utilise donc notre propre méthode pour downloader à partir d'un serveur. 
+J'ai ajouté dans la méthode d'initialisation une variable d'instance contenant la base de l'URL de EXO, exactement comme en Python.
 
-Je ne précise pas ici le fonctionnement précis du module "rest client" pour ne pas alourdir ce chapitre avec des notions qui ne sont pas encore indispensables, on verra ça plus tard.
+Dans `get_planets`, ligne 2 : on utilise donc notre propre méthode pour downloader à partir d'un serveur. 
 
-Résumé: la variable `content` contient la réponse de la méthode `download` à qui l'on avait passé en paramètre l'URL du serveur construite auparavant.
+Je ne précise pas ici le fonctionnement précis du module "rest client" pour ne pas alourdir ce chapitre avec des notions qui ne sont pas encore indispensables.
+
+Résumé : la variable `content` contient la réponse de la méthode `download` à qui l'on avait passé en paramètre l'URL du serveur construite auparavant.
 
 Cette réponse étant du JSON, on la décode grâce au module importé puis on retourne la réponse à l'objet qui a appellé.
 
-La méthode "get_names" fonctionne comme en Python, mais la syntaxe est différente. Voyons en détail.
+La méthode `get_names` fonctionne comme en Python, mais la syntaxe est différente. Voyons en détail.
 
 D'abord on crée un tableau vide, ça c'est pareil.
 
-Ensuite la ligne:
+Ensuite la ligne :
 
 ```ruby
 planet_list.each do |planet|
 ```  
 
-signifie "dans la liste 'planet_list', prends chaque élément et traite-le comme étant l'objet 'planet', merci".
+signifie "dans la liste `planet_list`, prends chaque élément et traite-le comme étant l'objet `planet`, merci".
 
-'.each' est une méthode très utilisée en Ruby, qui remplace la boucle "for" vue en Python.
+`.each` est une méthode très utilisée en Ruby, qui remplace la boucle "for" vue en Python.
 
-On peut appliquer '.each' à tout objet énumérable: tableaux, dictionnaires, listes, etc.
+On peut appliquer `.each` à tout objet énumérable: tableaux, dictionnaires, listes, etc.
 
-Ensuite on a:
+Ensuite on a :
 
 ```ruby
 names << planet['name']
 ```  
 
-qui signifie "injecte dans le tableau 'names' la valeur de la clé 'name' du dictionnaire 'planet', 'planet' étant chaque objet dans la liste 'planet_list' dans laquelle nous sommes en train d'itérer".
+qui signifie "injecte dans le tableau `names` la valeur de la clé `name` du dictionnaire `planet`, `planet` étant chaque objet dans la liste `planet_list` dans laquelle nous sommes en train d'itérer".
 
-Puis, comme en Python, on retourne le tableau 'names' à qui l'a appellé.
+Puis, comme en Python, on retourne le tableau `names` à qui l'a appellé.
 
-Notre méthode "print_list" est identique à la version Python mais utilise la méthode "each" _de_ l'objet tableau au lieu d'utiliser une boucle "for" _sur_ l'objet tableau.
+Notre méthode `print_list` est identique à la version Python mais utilise la méthode `each` _de_ l'objet tableau au lieu d'utiliser une boucle `for` _sur_ l'objet tableau.
 
-Voilà! Nous avons traduit notre code Python en Ruby.
+Voilà ! Nous avons traduit notre code Python en Ruby.
 
 J'ai volontairement gardé la même organisation que dans le script précédent pour pouvoir étudier et comparer plus facilement.
 
@@ -137,7 +139,7 @@ Mais ce script n'est du coup plus très Rubyesque, nous allons donc maintenant n
 
 Ruby propose de nombreuses aides syntaxiques pour obtenir du code propre et compact.
 
-Nous allons transformer nos formules un peu lourdes en quelque chose de plus Rubyesque: non seulement ça va nous permettre d'apprendre à 'refactor' notre code pour le rendre plus modulaire, mais nous allons en profiter pour approfondir et/ou eclaircir certains concepts déjà vus.
+Nous allons transformer nos formules un peu lourdes en quelque chose de plus Rubyesque&nbsp;: non seulement ça va nous permettre d'apprendre à 'refactor' notre code pour le rendre plus modulaire, mais nous allons en profiter pour approfondir et/ou eclaircir certains concepts déjà vus.
 
 **exo3a.rb**
 
@@ -184,15 +186,15 @@ exo = NasaExo.new(ARGV[0])
 exo.print_names
 ```  
 
-Woah! Voilà un truc que j'adore en Ruby: des méthodes courtes et compactes mais pourtant toujours lisibles.
+Woah ! Voilà un truc que j'adore en Ruby&nbsp;: des méthodes courtes et compactes mais pourtant toujours lisibles.
 
 Ceci dit il y a là *énormément* de changements, nous allons donc voir ça dans le détail.
 
-Regardez à la fin du script: au lieu d'un enchaînement d'instructions, il n'y a plus que l'instanciation de la classe puis une instruction.
+Regardez à la fin du script&nbsp;: au lieu d'un enchaînement d'instructions, il n'y a plus que l'instanciation de la classe puis une instruction.
 
-C'est pour aller dans le sens du principe suivant: c'est à la classe de manier les complexités, non pas à celui qui appelle la classe.
+C'est pour aller dans le sens du principe suivant&nbsp;: c'est à la classe de manier les complexités, non pas à celui qui appelle la classe.
 
-Pour ce faire j'ai créé dans la classe une méthode "print_names" qui fait ce que l'on faisait nous-mêmes auparavant.
+Pour ce faire j'ai créé dans la classe une méthode `print_names` qui fait ce que l'on faisait nous-mêmes auparavant.
 
 Il faut lire cette ligne de l'intérieur vers l'extérieur pour bien comprendre:
 
@@ -200,11 +202,11 @@ Il faut lire cette ligne de l'intérieur vers l'extérieur pour bien comprendre:
 print_list(get_names(get_planets))
 ```  
 
-On appelle la méthode "get_planets" qui renvoie une liste d'objets JSON décodés, chaque objet étant une planète; ce résultat est envoyé à "get_names" qui itère dans cette liste et extrait le nom de chaque planète; ce résultat est envoyé à "print_list" qui itère dans la liste de noms et affiche chaque objet (donc chaque nom). Ce résultat (l'affichage des noms) est lui-même renvoyé à l'appellant ('exo.print_names').
+On appelle la méthode `get_planets` qui renvoie une liste d'objets JSON décodés, chaque objet étant une planète; ce résultat est envoyé à `get_names` qui itère dans cette liste et extrait le nom de chaque planète; ce résultat est envoyé à `print_list` qui itère dans la liste de noms et affiche chaque objet (donc chaque nom). Ce résultat (l'affichage des noms) est lui-même renvoyé à l'appellant (`exo.print_names`).
 
-On envoie des objets à des objets. Nous y sommes! :)
+On envoie des objets à des objets. Nous y sommes&nbsp;!
 
-Reprenons maintenant chaque méthode. Dans "get_planets":
+Reprenons maintenant chaque méthode. Dans `get_planets`&nbsp;:
 
 ```ruby
 JSON.load(download(make_url_planets_year))['response']['results']
@@ -212,15 +214,15 @@ JSON.load(download(make_url_planets_year))['response']['results']
 
 Là, l'idée c'est que nous avons la même chose que précédemment mais compacté en une seule ligne.
 
-On part de l'intérieur des parenthèses: la méthode "make_url_planets_year" renvoie l'URL construite à l'aide des variables d'instance.
+On part de l'intérieur des parenthèses&nbsp;: la méthode `make_url_planets_year` renvoie l'URL construite à l'aide des variables d'instance.
 
-Mais regardez bien dans la méthode "make_url_planets_year": il n'y a pas de "return"!
+Mais regardez bien dans la méthode `make_url_planets_year`: il n'y a pas de `return`!
 
 Voilà un concept *essentiel en Ruby*:
 
 **En Ruby, la dernière expression évaluée est toujours renvoyée.**
 
-Dans cette méthode "make_url_planets_year", il n'y a qu'une expression: 
+Dans cette méthode `make_url_planets_year`, il n'y a qu'une expression: 
 
 ```ruby
 @api_base + 'planets/search?disc_year=' + @year
@@ -228,25 +230,27 @@ Dans cette méthode "make_url_planets_year", il n'y a qu'une expression:
 
 et cette expression crée une chaîne de caractères qui représente l'URL, comme on l'a déjà vu.
 
-Mais comme on est en Ruby, on n'a pas besoin de mettre `return` devant puisque c'est la dernière expression de la méthode: elle est donc retournée automatiquement.
+Mais comme on est en Ruby, on n'a pas besoin de mettre `return` devant puisque c'est la dernière expression de la méthode&nbsp;: elle est donc retournée automatiquement.
 
 Ceci est vraiment _très_ important pour Ruby. Python ne fais pas ça du tout, en tout cas pas du tout de manière systématique.
 
-Bon, ensuite cette url part dans notre méthode "download" qui va renvoyer ce qu'elle aura téléchargé. On découvre ici une nouvelle syntaxe, mais nous allons plutôt l'étudier sur le prochain exemple.
+Bon, ensuite cette url part dans notre méthode `download` qui va renvoyer ce qu'elle aura téléchargé. 
 
-Cet objet qui est le 'téléchargement' part ensuite dans le décodeur JSON, qui renvoie le résultat: et de ce résultat on extrait directement les champs "['response']['results']" sans passer non plus par une variable intermédiaire.
+On découvre ici une nouvelle syntaxe, mais nous allons plutôt l'étudier sur le prochain exemple.
 
-Comme c'est la dernière chose évaluée, c'est ce qui est renvoyé à l'appellant: ça tombe bien, c'est ce qu'on veut et c'est fait exprès. :)
+Cet objet qui est le 'téléchargement' part ensuite dans le décodeur JSON, qui renvoie le résultat&nbsp;: et de ce résultat on extrait directement les champs `['response']['results']` sans passer non plus par une variable intermédiaire.
+
+Comme c'est la dernière chose évaluée, c'est ce qui est renvoyé à l'appellant&nbsp;: ça tombe bien, c'est ce qu'on veut et c'est fait exprès.&nbsp;:)
 
 Si c'est pas clair, comparez cette version avec la précédente en les mettant l'une à côté de l'autre sur votre écran, et essayez de suivre mentalement le chemin des objets.
 
-Pour s'entraîner il n'est pas ridicule de le faire à voix haute, par exemple: "alors cette ligne appelle ça qui le renvoie ici, ça appelle cet objet qui envoie le résultat dans cette méthode qui en prend chaque élément puis..."
+Pour s'entraîner il n'est pas ridicule de le faire à voix haute, par exemple&nbsp;: "alors cette ligne appelle ça qui le renvoie ici, ça appelle cet objet qui envoie le résultat dans cette méthode qui en prend chaque élément puis..."
 
-Dans la version précédente on mettait chaque résultat dans une variable puis on passait cette variable à la méthode ou à l'objet suivant: maintenant on se gênera pas pour imbriquer directement les méthodes et objets sans passer par des stockages intermédiaires.
+Dans la version précédente on mettait chaque résultat dans une variable puis on passait cette variable à la méthode ou à l'objet suivant&nbsp;: maintenant on se gênera pas pour imbriquer directement les méthodes et objets sans passer par des stockages intermédiaires.
 
 Bien sûr il faut tout de même rester lisible et ne pas s'amuser à créer des one-liners façon matriochkas mandalesques pour faire le malin: la compacité c'est bien, mais l'expressivité c'est mieux.
 
-Voyons maintenant la méthode "get_names":
+Voyons maintenant la méthode `get_names`&nbsp;:
 
 ```ruby
 planet_list.map {|planet| planet['name']}
@@ -258,7 +262,7 @@ Au lieu de créer une variable tableau vide puis d'itérer dans chaque objet de 
 
 `.map` itère dans un objet énumérable tout comme le fait `.each` mais crée automatiquement un tableau et le remplit avec le résultat de chaque itération.
 
-Cette ligne peut donc se lire ainsi: "dans la liste 'planet_list', itère sur chaque objet que tu nommes 'planet' et récupères le champ ['name'] de cet objet pour le placer dans un tableau que tu renverras à la fin".
+Cette ligne peut donc se lire ainsi: "dans la liste `planet_list`, itère sur chaque objet que tu nommes `planet` et récupères le champ `['name']` de cet objet pour le placer dans un tableau que tu renverras à la fin".
 
 Cette ligne:
 
@@ -286,11 +290,11 @@ return names
 
 ## Exoplanètes
 
-Il est grand temps d'avancer dans notre app et de lui rajouter des fonctions. :)
+Il est grand temps d'avancer dans notre app et de lui rajouter des fonctions.&nbsp;:)
 
 Nous allons extraire d'autres infos de la réponse de EXO (jusque là nous n'avons que les noms des planètes) et les stocker dans une structure qui fait proxy pour faciliter la manipulation.
 
-Nous allons créer deux méthodes, une pour récupérer plein de trucs dans un dictionnaire et l'autre pour les afficher:
+Nous allons créer deux méthodes, une pour récupérer plein de trucs dans un dictionnaire et l'autre pour les afficher&nbsp;:
 
 **exo3b.rb**
 
@@ -361,11 +365,11 @@ exo = NasaExo.new(ARGV[0])
 exo.print_details
 ```  
 
-Yeah! Voilà enfin l'affichage prévu depuis le début! La liste des exoplanètes découvertes en l'an xxx, avec quelques infos sur chacune.
+Yeah&nbsp;! Voilà enfin l'affichage prévu depuis le début&nbsp;! La liste des exoplanètes découvertes en l'an xxx, avec quelques infos sur chacune.
 
-Voyons notre méthode "make_details".
+Voyons notre méthode `make_details`.
 
-On itère sur le résultat de "get_planets": c'est juste qu'on ne stocke pas d'abord ce résultat dans une variable pour itérer dessus, mais on travaille directement dedans.
+On itère sur le résultat de `get_planets`: c'est juste qu'on ne stocke pas d'abord ce résultat dans une variable pour itérer dessus, mais on travaille directement dedans.
 
 On aurait pu faire:
 
@@ -376,15 +380,15 @@ planets.map do |obj|
 
 et c'était pareil.
 
-Ici, `.map` va créer un tableau contenant un dictionnaire par planète: ce dico contient uniquement les infos qui nous intéressent sur chaque planète.
+Ici, `.map` va créer un tableau contenant un dictionnaire par planète&nbsp;: ce dico contient uniquement les infos qui nous intéressent sur chaque planète.
 
-Notre méthode "print_details" itère sur le résultat renvoyé par notre méthode "make_details", mais cette fois avec `.each` et sur plusieurs lignes avec la syntaxe "do |x| ... end".
+Notre méthode `print_details` itère sur le résultat renvoyé par notre méthode `make_details`, mais cette fois avec `.each` et sur plusieurs lignes avec la syntaxe `do |x| ... end`.
 
 A l'intérieur de cette boucle il y a une autre boucle, de syntaxe compacte, qui elle pioche dans le dictionnaire chaque clé et chaque valeur et les affiche selon un certain protocole que nous allons étudier.
 
 ## Manipuler du texte
 
-Analysons le contenu de la méthode "print_details":
+Analysons le contenu de la méthode `print_details`:
 
 ```ruby
 puts "\n"
@@ -400,7 +404,7 @@ Ensuite on itère dans la liste détaillée des planètes, et chaque objet plan�
 
 On itère alors dans cet objet avec DEUX paramètres, puisque nous sommes en train d'itérer dans un dictionnaire qui contient non pas des éléments uniques mais des paires d'éléments (les couples clé/valeur).
 
-Pour chaque couple clé/valeur, nous affichons une chaîne de caractères:
+Pour chaque couple clé/valeur, nous affichons une chaîne de caractères&nbsp;:
 
 ```ruby
 "#{key.capitalize.ljust(16)} #{value.to_s.capitalize}"
@@ -436,13 +440,13 @@ Donc si j'ai
 
 Ca signifie que j'applique la méthode `capitalize` sur la variable `key`, ça renvoie une string (chaîne de caractères) qui est *insérée* dans `"La clé est: "`.
 
-La méthode `.ljust(16)` permet elle de garantir que la longueur minimale du texte renvoyé par l'objet sera de 16 caractères: ça permet d'afficher des colonnes tabulées.
+La méthode `.ljust(16)` permet elle de garantir que la longueur minimale du texte renvoyé par l'objet sera de 16 caractères&nbsp;: ça permet d'afficher des colonnes tabulées.
 
-Comme nous sommes en train d'itérer dans le dictionnaire que nous avons construit, je prends l'exemple de la première paire clé/valeur pour résumer:
+Comme nous sommes en train d'itérer dans le dictionnaire que nous avons construit, je prends l'exemple de la première paire clé/valeur pour résumer&nbsp;:
 
 ![Itération avec deux valeurs](https://files.app.net/2xlkg9L3z.png)
 
-D'autres manipulations intéressantes:
+D'autres manipulations intéressantes&nbsp;:
 
 ```ruby
 nerv = "ah oui ".upcase
@@ -495,11 +499,11 @@ puts wow['lettres'][0]
 puts wow['chiffres'].last
 ```  
 
-Pour tester du Ruby, pas obligé d'enregistrer dans un fichier: vous pouvez utiliser 'IRB' (interactive Ruby).
+Pour tester du Ruby, pas obligé d'enregistrer dans un fichier&nbsp;: vous pouvez utiliser 'IRB' (interactive Ruby).
 
-Dans le Terminal, tapez `irb`: vous vous retrouvez dans une *console Ruby*. Tout ce que vous tapez désormais est du Ruby (tapez `quit` pour sortir).
+Dans le Terminal, tapez `irb`&nbsp;: vous vous retrouvez dans une *console Ruby*. Tout ce que vous tapez désormais est du Ruby (tapez `quit` pour sortir).
 
-Par exemple, vous y tapez:
+Par exemple, vous y tapez&nbsp;:
 
 ```ruby
 nerv = "ah oui ".upcase
@@ -511,12 +515,12 @@ puis
 puts nerv * nerv.length
 ``` 
 
-et ainsi de suite: vous avez les opérations en temps réel.
+et ainsi de suite&nbsp;: vous avez les opérations en temps réel.
 
-Sinon vous pouvez bien sûr tout copier-coller dans un fichier et observer les résultats d'un coup, ça marche aussi. ;)
+Sinon vous pouvez bien sûr tout copier-coller dans un fichier et observer les résultats d'un coup, ça marche aussi.&nbsp;;)
 
 ## Conclusion
 
-Je vous laisse vous entraîner: avec toutes ces nouvelles infos vous allez être capable de bien enrichir vous-même votre app.
+Je vous laisse vous entraîner&nbsp;: avec toutes ces nouvelles infos vous allez être capable de bien enrichir vous-même votre app.
 
-Il nous manque cependant encore quelques éléments essentiels pour terminer cette initiation, que nous verrons lors du prochain chapitre... en Python! :)
+Il nous manque cependant encore quelques éléments essentiels pour terminer cette initiation, que nous verrons lors du prochain chapitre... en Python&nbsp;!&nbsp;:)
