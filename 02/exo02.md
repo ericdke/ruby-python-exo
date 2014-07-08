@@ -7,13 +7,15 @@ Si vous n'avez pas suivi, commencez donc au [premier chapitre]().
 
 ## De Ruby à Python
 
-Pour ce tutoriel nous allons poursuivre en Python.
+Pour ce tutoriel nous allons poursuivre en Python. 
 
-Et pour simplifier le suivi, j'ai adapté le code Ruby du précédent chapitre en code Python. 
+Et pour simplifier le suivi, j'ai déjà adapté le code Ruby du précédent chapitre en code Python. 
 
 Nous allons découvrir ensemble quelques points communs et différences entre ces deux langages, en tout cas au niveau qui nous concerne pour ce tuto.
 
-La plus grande différence entre les deux&nbsp;:
+Pas de panique : je vous tiens par la main, tout va bien se passer.&nbsp;:)
+
+La plus grande différence entre ces deux langages&nbsp;:
 
 **L'indentation du code en Python est _obligatoire_ et significative.**
 
@@ -36,32 +38,40 @@ exo = NasaExo(sys.argv)
 exo.what_year()
 ```  
 
-On voit bien que c'est similaire à Ruby, même si de nombreux détails changent. 
+On voit bien que c'est la même application que ce que nous avons fait en Ruby, même si quelques détails changent. 
 
-La plus grande différence&nbsp;: il n'y a plus de "end" mais, à la place, une indentation du code.
+La plus grande différence&nbsp;: il n'y a plus de `end` mais, à la place, une indentation du code.
 
-C'est cette indentation qui indique à Python la hiérarchie du code&nbsp;: Python sait que la méthode "what_year" est dans la classe "NasaExo" car "what_year" est décalé d'un tab (quatre espaces pour Python en principe) par rapport à la classe.
+C'est cette indentation qui indique à Python la hiérarchie du code&nbsp;: Python sait que la méthode `what_year` est dans la classe `NasaExo` car `what_year` est décalé d'un tab (quatre espaces pour Python par convention) par rapport à la classe.
 
 ![Indentation significative](https://files.app.net/2x3gc3IiX.png)
 
 
-Mais reprenons ligne par ligne.
+*Mais reprenons ligne par ligne.*
+
+```python
+# _*_ encoding: utf-8 _*_
+```  
+
+
 
 J'ai ajouté au début une instruction spéciale, qui ressemble à un commentaire car placée après un `#`, mais qui est un moyen de forcer Python à utiliser l'encodage de caractères en UTF-8, c'est-à-dire avec les accents du Français, les kanji japonais, les emoticons, etc.
 
-Je ne l'avais pas fait dans l'exercice précédent car Ruby est plus tolérant mais c'est le même principe.
+Je ne l'avais pas fait dans l'exercice précédent car Ruby est plus tolérant mais c'est le même principe. 
+
+Si vous n'êtes pas certain de comprendre ce qui se passe sur cette ligne, essayez juste de faire tourner ce script sans elle, vous verrez que Python n'est pas content du tout si votre texte contient des accents...
 
 Ensuite&nbsp;:
 
 `import sys`
 
-'import' existe aussi en Ruby ('require') mais on n'en n'avait pas eu besoin.
+`import` existe aussi en Ruby (`require`) mais on n'en n'avait pas eu besoin.
 
 Ca signifie qu'on importe dans notre app des méthodes qui sont définies ailleurs (ici, dans la "bibliothèque standard" de Python) et qui ne sont donc pas chargées par défaut.
 
-Là, on demande "Python, dans mon app je veux pouvoir utiliser les fonctions de ton module 'sys', merci".
+Là, on demande "Python, dans mon app je veux pouvoir utiliser les fonctions de ton module `sys`, merci".
 
-'sys'&nbsp;: des fonctions pour utiliser le système d'exploitation. Ici, necessaire pour avoir accès à ARGV (alors que Ruby nous le donne directement).
+`sys`&nbsp;: des fonctions pour utiliser le système d'exploitation. Ici, necessaire pour avoir accès à la constante ARGV (alors que Ruby nous le donne directement).
 
 Ensuite, définition de la classe&nbsp;:
 
@@ -73,9 +83,9 @@ Dans Ruby la plupart des parenthèses ne sont pas obligatoires, et donc je ne le
 
 En revanche dans Python il faut les écrire, même si il n'y a pas de paramètres (on met alors des parenthèses vides).
 
-Et *toujours* terminer une définition par ":" (deux points).
+Et *toujours* terminer une définition par `:` (deux points).
 
-En revanche, pas besoin de "end": c'est l'indentation qui indique la hiérarchie. 
+En revanche, pas besoin de `end`: c'est l'indentation qui indique la hiérarchie. 
 
 Tout ce qui suivra cette déclaration de classe *et qui sera indenté* appartiendra à la classe. Pour sortir de la classe, il suffit de réduire l'indentation.
 
@@ -90,17 +100,17 @@ C'est le même principe qu'en Ruby mais formulé un peu différemment&nbsp;:
 
 On a `__init__` au lieu de `initialize`, mais c'est pareil.
 
-Mais on a aussi un "self" avant la variable de paramètres, c'est quoi&nbsp;? 
+Mais on a aussi un `self` avant la variable de paramètres, c'est quoi&nbsp;? 
 
 Hé bien ici l'explication complète est complexe et pas necessaire pour le moment, on va donc juste accepter le fait.&nbsp;:)
 
-Disons simplement que ce "self" c'est le même que celui de la ligne suivante, "self.year" et que ça donne l'équivalent de la variable d'instance en Ruby "@year".
+Disons simplement que ce `self` c'est le même que celui de la ligne suivante, `self.year` et que ça donne l'équivalent de la variable d'instance en Ruby `@year`.
 
-*Le "self", tout comme "@", représente ici l'appartenance à la classe.*
+*Le `self`, tout comme `@`, représente ici l'appartenance à la classe.*
 
 Ensuite, on remarque que l'on pioche le deuxième élément du tableau ARGV au lieu du premier comme en Ruby.
 
-*Souvenez-vous, les tableaux sont indexés à partir de 0, donc le deuxième élément est 1.*
+*Souvenez-vous, les tableaux sont indexés à partir de 0, donc le deuxième élément est d'index 1.*
 
 C'est parce qu'en Python, le premier élément de ARGV est le nom du fichier de l'application en cours d'exécution.
 
@@ -111,11 +121,11 @@ Méthode suivante&nbsp;:
         print "L'année demandée est", self.year
 ```  
 
-Encore ce "self" ! Hé oui, ben si vous voulez faire du Python va juste falloir s'y habituer...&nbsp;:)
+Encore ce `self` ! Hé oui, ben si vous voulez faire du Python va juste falloir s'y habituer...&nbsp;:)
 
 En Python, une méthode prend *toujours* au moins `self`.
 
-Elle prend "self" *puis* son paramètre (comme on l'a vu pour `__init__`); sinon elle prend seulement "self" (la référence à sa classe).
+Elle prend `self` *puis* son paramètre (comme on l'a vu pour `__init__`); sinon elle prend seulement `self` (la référence à sa classe).
 
 Ensuite on affiche un texte suivi de la variable d'instance qui contient l'année demandée par l'utilisateur dans ARGV (voir 1er chapitre).
 
@@ -143,15 +153,15 @@ exo.what_year()
 
 Youpi&nbsp;! On vient de traduire du Ruby en Python&nbsp;! 
 
-Et le bonus&nbsp;: le plus dur est fait. Vous venez déjà de voir les détails les plus chiants pour ce qui concerne la différence entre les deux.
+Et le bonus&nbsp;: le plus dur est fait. Vous venez déjà de voir les détails les plus énervants pour ce qui concerne la différence entre les deux.
 
-Bien sûr il y a *énormément* d'autres différences, mais elles ne sont pas chiantes.&nbsp;:)
+Bien sûr il y a *énormément* d'autres différences, mais elles ne sont pas énervantes.&nbsp;:)
 
-## La NASA! La NASA!
+## La NASA ! La NASA !
 
 Ouiiii&nbsp;! Nous y voilà...
 
-Notez l'url de l'API qui nous concerne:
+Notez l'url de l'API qui nous concerne&nbsp;:
 
 `http://exoapi.com/api/skyhook/`
 
@@ -167,7 +177,7 @@ Cette variable `self.api_base`, tout comme en Ruby on aurait pu avoir `@api_base
 
 Comme on va parler à un serveur en JSON, nous avons aussi besoin des modules optionnels pour traiter ce format. On va utiliser `import json` (en Ruby on aurait fait `require 'json'`).
 
-Il nous faut également de quoi nous *connecter* au serveur, lui envoyer des messages et recevoir ses réponses&nbsp;: `import urllib`. 
+Il nous faut également de quoi nous *connecter* au serveur en HTTP, lui envoyer des requêtes et recevoir ses réponses&nbsp;: `import urllib`. 
 
 Ensuite on va s'ajouter une petite méthode qui va construire l'url en lui ajoutant l'année demandée, au bon format demandé par le serveur.
 
@@ -204,9 +214,9 @@ Première nouveauté, le `return`&nbsp;: c'est simple, ça *renvoie* la résulta
 
 Ici, la méthode `get_planets` *renvoie* la valeur à `exo.get_planets()` et on l'affiche avec `print`.
 
-Jusque là, tout va bien&nbsp;? Hé, on apprend deux langages en même temps et on va se connecter à la NASA, la classe!&nbsp;:)
+Jusque là, tout va bien&nbsp;? Hé, on apprend deux langages en même temps et on va se connecter à la NASA, la classe&nbsp;!&nbsp;:)
 
-Testez donc ce script&nbsp;:
+Testez donc ce script comme ceci&nbsp;:
 
 ```
 > python exo2.py 2012
@@ -215,13 +225,13 @@ Testez donc ce script&nbsp;:
 Le résultat doit donner&nbsp;:
 
 ```
-L'année demandée est 2000
-http://exoapi.com/api/skyhook/planets/search?disc_year=2000
+L'année demandée est 2012
+http://exoapi.com/api/skyhook/planets/search?disc_year=2012
 ```  
 
 ## Mais allez, la NASA, quoi!
 
-Voilà, oh&nbsp;! Impatient, va.&nbsp;:)
+Voilà, oh&nbsp;! Impatient, va.&nbsp;;)
 
 **exo2b.py**
 
@@ -264,7 +274,7 @@ Première ligne de notre méthode "get_planets"&nbsp;:
 url = self.api_base + 'planets/search?disc_year=' + self.year
 ```  
 
-Ici, on prend la variable qui contient l'url de base, on ajoute la suite de l'url (je l'ai pris dans la documentation sur le site web de Exo) et on ajoute enfin l'année demandée, comme on l'a déjà vu.
+Ici, on prend la variable qui contient l'url de base, on ajoute la suite de l'url (correspondant à notre requête) et on ajoute enfin l'année demandée.
 
 Deuxième ligne&nbsp;:
 
@@ -286,7 +296,7 @@ content = cnx.read()
 
 On stocke dans une variable nommée `content` (comme 'contenu' en anglais) le résultat de l'appel de la méthode `read` sur l'objet `cnx` (la connexion) que l'on vient de construire.
 
-On active la connexion, on lit le contenu donné par le serveur, et on le stocke dans la variable.
+Ca active la connexion, lit le contenu donné par le serveur, et le stocke dans la variable.
 
 Facile. :)
 
@@ -300,13 +310,13 @@ On crée une variable `decoded_planets` et on y stocke non pas notre contenu mai
 
 Car le contenu JSON brut délivré par le serveur n'est pas utilisable tel quel, il faut le décoder vers des structures que connaît Python, comme des tableaux ou dictionnaires&nbsp;: c'est ce que fait ce module.
 
-Notre variable `decoded_planets` contient maintenant un gros dictionnaire plein d'objets complexes représentant des planètes&nbsp;: nous en retournons le contenu avec 
+Notre variable `decoded_planets` contient maintenant un gros dictionnaire plein d'objets complexes représentant des planètes&nbsp;: nous en retournons le contenu du champ `['response']['results']` avec 
 
 ```python
 return decoded_planets['response']['results']
 ```  
 
-ce qui nous donne un *tableau*, qui va dans `planet_list`, et dont nous affichons le *premier objet*:
+ce contenu est un *tableau*, qui retourne dans `planet_list`, et dont nous affichons le *premier objet*&nbsp;:
 
 ```python
 print planet_list[0]
@@ -332,7 +342,7 @@ Nous allons donc trier *des objets à partir de la liste*, et ensuite *des infos
 
 Quand je dis 'trier', je pense à 'extraire', 'ranger' et 'stocker'.
 
-Nous allons aussi, mais de manière diluée et au fur et à mesure, reformuler (éclater, rationaliser) les méthodes de notre classe pour en faire des objets plus sécurisés.
+Nous allons aussi, mais de manière diluée et au fur et à mesure, reformuler (éclater, rationaliser) les méthodes de notre classe pour en faire des objets plus matures.
 
 Au lieu de juste afficher le premier objet de la liste qui contient toutes les infos sur une planète, on va découvrir comment itérer (faire un boucle) sur cette liste et obtenir, par exemple, uniquement le *nom* de chaque planète.
 
@@ -378,11 +388,13 @@ noms = exo.get_names(planet_list)
 exo.print_list(noms)
 ```  
 
-Et voilà, la liste des noms d'exoplanètes découvertes en l'an xxx&nbsp;!
+**Et voilà, la liste des noms d'exoplanètes découvertes en l'an xxx&nbsp;!**
 
 Allons-y étape par étape.
 
-Avant-dernière ligne: nous stockons dans `noms` le résultat de la méthode `get_names` à laquelle on a fourni la liste des planètes&nbsp;; ce résultat est une liste de noms, comme nous allons l'étudier.
+Tout d'abord à la fin du script, là où s'exécutent les actions, à l'avant-dernière ligne&nbsp;: 
+
+Nous stockons dans `noms` le résultat de la méthode `get_names` à laquelle on a fourni la liste des planètes&nbsp;; ce résultat est une liste de noms, comme nous allons l'étudier.
 
 Ensuite on appelle la méthode `print_list` en lui passant cette liste.
 
@@ -406,8 +418,6 @@ for planet in planet_list:
 
 signifie "pour chaque objet de la liste `planet_list` tu considères cet objet comme étant nommé `planet` puis..."
 
-Ensuite :
-
 ```python
 names.append(planet['name'])
 ```  
@@ -424,30 +434,23 @@ return names
 
 on renvoie notre tableau plein de noms à qui l'a appelé&nbsp;: l'avant-dernière ligne (`noms = exo.get_names(planet_list)`).
 
-Ce tableau de noms est renvoyé à la méthode `print_list` qui itère dans la liste et en affiche chaque objet.
+Ce tableau de noms est renvoyé à la méthode `print_list` qui itère dans la liste et en affiche chaque objet&nbsp;:
+
+```python
+def print_list(self, my_list):
+    for obj in my_list:
+        print obj
+```  
+
+"Hey Python, pour chaque objet dans `my_list`, tu considères cet objet comme étant nommé `obj` puis tu l'afffiches".
+
 
 ## Conclusion
 
-Ce second chapitre est plus court que le premier car il contient beaucoup plus de nouveaux éléments à retenir.
+Ce second chapitre est plus court que le premier car plus concentré, il y a de nombreux nouveaux éléments à retenir.
 
-Notre application existe désormais, et c'est formidable&nbsp;!
+Notre application existe désormais, et c'est formidable&nbsp;! Mais elle est très basique&nbsp;: nous allons très vite l'améliorer dans le prochain chapitre.
 
-Mais elle est très basique, et nous allons dans le prochain chapitre l'améliorer grandement.
+J'espère que cet article vous aura permis de vous initier à Python et à quelques concepts essentiels de la programmation.
 
-Nous avons déjà couvert les quatre premiers points de notre liste, et même une partie du cinquième&nbsp;:
-
-```
-1. Récupérer une année indiquée par l'utilisateur, par exemple 2012
-2. Se connecter au serveur EXO de la NASA
-3. Demander quelles exoplanètes ont été découvertes cette année-là
-4. Récupérer la réponse au format JSON
-5. Trier les éléments fournis
-6. Gérer les éventuelles erreurs
-7. Préparer un affichage avec ce qui nous intéresse
-``` 
-
-J'espère que cet article vous aura permis de vous initier à Python et à quelques nouveaux concepts de la POO (programmation orientée objet).
-
-La prochaine fois on reviendra à Ruby pour encore plus de WOWOWOW WOOHOO&nbsp;!!!
-
-En attendant, mon conseil&nbsp;: restez sur Python pour cet exercice et entraînez-vous à faire des scripts qui bouclent sur des listes (tableaux), qui utilisent les paramètres donnés par l'utilisateur, qui se connectent à la NASA, décodent du JSON, trient et stockent des données pour les afficher, bref, tout ce qu'on a déjà vu&nbsp;!&nbsp;:)
+La prochaine fois on reviendra à Ruby pour encore plus d'action&nbsp;!&nbsp;:)
