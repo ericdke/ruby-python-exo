@@ -7,11 +7,11 @@ allons nous baser sur un exemple concret, à base de NASA et d'exoplanètes&nbsp
 
 C'est une initiation pour aspirants codeurs, mais qui demande tout de même d'être familier avec quelques outils dont le Terminal.
 
-L'idée c'est: vous vous sentez prêt à apprendre mais ne savez pas par quoi commencer ? Alors jetez-vous dans le feu avec moi ! :)
+L'idée c'est: vous vous sentez prêt à apprendre mais ne savez pas par quoi commencer&nbsp;? Alors jetez-vous dans le feu avec moi&nbsp;!&nbsp;:)
 
 ### Un gros mot: API
 
-Nous allons nous adresser à une API de la NASA.
+Nous allons nous adresser à une [API](http://fr.wikipedia.org/wiki/Interface_de_programmation) de la NASA.
 
 Une API est, pour résumer, la partie accessible programmaticalement d'une autre application que la votre. 
 
@@ -32,7 +32,7 @@ quelques notions de base, mais irai, également, rapidement à l'essentiel&nbsp;
 ### Un autre: JSON
 
 Le serveur de la NASA (nous utiliserons désormais son nom&nbsp;: EXO) va nous
-répondre avec un format bien précis: le JSON.
+répondre avec un format bien précis: le [JSON](http://fr.wikipedia.org/wiki/JSON).
 
 C'est-à-dire que nous n'allons pas obtenir ni des pages web ni des fichiers mais du texte, organisé par un protocole précis.
 
@@ -85,7 +85,7 @@ Le champ 'data' contient un groupe d'objets (deux dans notre exemple) contenant 
 La première mouture de notre application peut se décrire en français:
 
 ```
-Se connecter au serveur EXO de la NASA
+Se connecter au serveur [EXO](http://exoapi.com) de la NASA
 Demander quelles exoplanètes ont-elles été découvertes en l'an 2000
 Récupérer la réponse au format JSON
 Trier les objets fournis
@@ -114,9 +114,9 @@ N'ayez pas peur, ça va s'éclaircir très vite, prenons pour ça un exemple tou
 
 ## Exemple basique
 
-Le fameux Hello World. 
+Le fameux [Hello World](http://fr.wikipedia.org/wiki/Hello_World). 
 
-Principe: on veut afficher "Hello World!" à l'écran.
+Principe&nbsp;: on veut afficher "Hello World!" à l'écran.
 
 Mais au lieu de m'en tenir à l'explication des mécanismes de base, comme le font tous les tutoriels, je vais directement vous plonger dans le grand bain. 
 
@@ -130,7 +130,7 @@ Cette classe comprendra plusieurs petits objets, qui seront des "méthodes".
 
 Ces méthodes sont des définitions d'objets qui remplissent chacun un rôle précis.
 
-**On va ici créer pour l'exemple une classe "Saluer" qui va contenir la méthode "dire_bonjour", mais qui pourrait aussi contenir une méthode "dire_au_revoir", une méthode "serrer_la_main", etc.**
+**On va ici créer pour l'exemple une classe `Saluer` qui va contenir la méthode `dire_bonjour`, mais qui pourrait aussi contenir une méthode `dire_au_revoir`, une méthode `serrer_la_main`, etc.**
 
 Allons-y. En Ruby, tiens, pour voir. On fera du Python la prochaine fois.
 
@@ -204,14 +204,14 @@ Savez-vous deviner ce que fait ce script&nbsp;?
 
 Allons-y ligne par ligne (sur `exo1a.rb`).
 
-1: nous créons la classe "Saluer". A cette ouverture correspond une fermeture avec le mot-clé "end":
+1: nous créons la classe `Saluer`. A cette ouverture correspond une fermeture avec le mot-clé `end`:
 
 ```ruby
 class Saluer
 end
 ```  
 
-2: dans la classe, nous créons la méthode "dire_bonjour". Pareil, il faut fermer avec "end":
+2: dans la classe, nous créons la méthode `dire_bonjour`. Pareil, il faut fermer avec `end`:
 
 ```ruby
 class Saluer
@@ -230,45 +230,45 @@ class Saluer
 end
 ```  
 
-Pour le moment, notre classe ne fait rien: elle est juste définie. 
+Pour le moment, notre classe ne fait rien&nbsp;: elle est juste définie. 
 
 Elle est *capable* de dire "Hello World!" car elle contient une méthode qui contient cette instruction, mais ne *fait* encore rien.
 
 Si vous enregistrez ces lignes dans un fichier `saluer.rb` ('rb' est l'extension pour Ruby) et si vous l'exécutez, rien ne se passe.
 
-Pour exécuter ce script Ruby, faites:
+Pour exécuter ce script Ruby, faites&nbsp;:
 
 `> ruby saluer.rb`
 
 dans le Terminal (en étant dans le même dossier que votre script).
 
-*Le ">" est là pour indiquer une commande à taper dans le Terminal, ne le tapez pas... :)*
+*Le ">" est là pour indiquer une commande à taper dans le Terminal, ne le tapez pas...&nbsp;:)*
 
-Rien ne s'affiche et c'est normal: l'instruction pour afficher est bien là mais elle est définie sous forme d'objet, et cet objet ne fait rien. Ou plutôt, on ne lui fait encore rien faire...
+Rien ne s'affiche et c'est normal&nbsp;: l'instruction pour afficher est bien là mais elle est définie sous forme d'objet, et cet objet ne fait rien. Ou plutôt, on ne lui fait encore rien faire...
 
-Pour exécuter l'instruction "dire bonjour" qui se trouve dans la classe "saluer", on va *instancier* la classe dans un objet, on peut presque dire qu'on va incarner cette classe:
+Pour exécuter l'instruction "dire bonjour" qui se trouve dans la classe `Saluer`, on va *instancier* la classe dans un objet, on peut presque dire qu'on va incarner cette classe&nbsp;:
 
 ```
 action = Saluer.new
 ```  
 
-**On dit ici à Ruby: tu prends la classe Saluer, et tu en crées une nouvelle instance dans un nouvel objet nommé 'action'.**
+**On dit ici à Ruby&nbsp;: tu prends la classe `Saluer`, et tu en crées une nouvelle instance dans un nouvel objet nommé `action`.**
 
-Cet objet 'action' contient désormais en lui la méthode "dire bonjour", que l'on peut alors appeler. Comment ?
+Cet objet `action` contient désormais en lui la méthode "dire bonjour", que l'on peut alors appeler. Comment&nbsp;?
 
-Avec un `.` (un point) comme on vient de faire avec 'new':
+Avec un `.` (un point) comme on vient de faire avec `new`&nbsp;:
 
 ```ruby
 action.dire_bonjour
 ```  
 
-Ici, on appelle la méthode (la fonction) "dire_bonjour" qui est contenue dans l'objet action.
+Ici, on appelle la méthode (la fonction) `dire_bonjour` qui est contenue dans l'objet `action`.
 
-Et là, s'affiche notre phrase dans le Terminal !
+Et là, s'affiche notre phrase dans le Terminal&nbsp;!
 
-## Mais... pourquoi?!
+## Mais... pourquoi ?!
 
-N'aurait-on pas pu simplement écrire UNE ligne de code? Comme ceci:
+N'aurait-on pas pu simplement écrire UNE ligne de code&nbsp;? Comme ceci&nbsp;:
 
 ```ruby
 puts "Hello World!"
@@ -284,15 +284,17 @@ Ensuite, on va appeller les méthodes de cette classe, pour qu'elles traitent le
 
 ## Ligne de commande
 
-Pour rester simple, notre application sera en ligne de commande. Elle va s'exécuter dans le Terminal.
+Pour rester simple, notre application sera en ligne de commande. Elle va s'exécuter dans le [Terminal](http://aya.io/blog/terminal-console-cli/).
 
-On tapera le nom de notre app, puis une donnée. Par exemple, pour savoir quelles exoplanètes ont été découvertes en l'an 2000, on fera:
+On tapera le nom de notre app, puis une donnée. 
+
+Par exemple, pour savoir quelles exoplanètes ont été découvertes en l'an 2000, on fera&nbsp;:
 
 ```
 ruby exoplanetes.rb 2000
 ```  
 
-Cela signifie que notre script ici nommé "exoplanetes.rb" devra être capable de *recevoir* des données de la part de l'utilisateur: ici, le nombre 2000.
+Cela signifie que notre script ici nommé "exoplanetes.rb" devra être capable de *recevoir* des données de la part de l'utilisateur&nbsp;: ici, le nombre 2000.
 
 Heureusement, c'est déjà prévu dans Ruby. Ca prend la forme d'une constante nommée 
 
@@ -304,7 +306,7 @@ Avec
 
 `ruby exoplanetes.rb 2000`
 
-la constante ARGV contient: 
+la constante ARGV contient&nbsp;: 
 
 `['2000']`
 
@@ -312,19 +314,19 @@ Si l'on faisait
 
 `ruby exoplanetes.rb 2000 2001 2002`
 
-ARGV contiendrait: 
+ARGV contiendrait&nbsp;: 
 
 `['2000', '2001', '2002']`
 
 ## Structures: tableau
 
-Qu'est-ce que c'est que ce `['2000', '2001', '2002']` ?
+Qu'est-ce que c'est que ce `['2000', '2001', '2002']`&nbsp;?
 
 En Ruby on appelle cette structure un tableau (Array).
 
 *C'est juste un container à éléments*. 
 
-On peut mettre ce qu'on veut dedans. Exemples d'arrays:
+On peut mettre ce qu'on veut dedans. Exemples d'arrays&nbsp;:
 
 ```ruby
 prénoms = ['Eric', 'Alice', 'Nicolas', 'Abed', 'John-Paul']
@@ -334,9 +336,9 @@ todo_list = ['ranger chambre', 'call 0605040302', 'savon, shampooing, PQ']
 mes_tableaux = [prénoms, emails, scores, todo_list]
 ```  
 
-Et ensuite, comment récupérer ces infos ?
+Et ensuite, comment récupérer ces infos&nbsp;?
 
-Si l'on en veut qu'une, on peut l'attraper par son numéro d'index: 
+Si l'on en veut qu'une, on peut l'attraper par son numéro d'index&nbsp;: 
 
 `puts prénoms[0]` 
 
@@ -344,13 +346,13 @@ donnera 'Eric'.
 
 C'est-à-dire que ça va afficher (`puts`) le premier prénom du tableau (car d'index `0`).
 
-Pour le deuxième prénom? 
+Pour le deuxième prénom&nbsp;? 
 
 `prénoms[1]`
 
 donnera 'Alice'.
 
-Pour le troisième? 
+Pour le troisième&nbsp;? 
 
 `prénoms[2]`
 
@@ -362,11 +364,11 @@ Si je fais
 
 `todo_list[2]`
 
-j'obtiens: 
+j'obtiens&nbsp;: 
 
 `'savon, shampooing, PQ'`
 
-Dernier exemple:
+Dernier exemple&nbsp;:
 
 `mes_tableaux[1][0]`
 
@@ -378,7 +380,7 @@ Oui, ça marche comme ça pour les *tableaux imbriqués*.
 
 `mes_tableaux[1]` renvoie le tableau `emails`, et l'index `[0]` de ce tableau est `'eric@aya.io'`&nbsp;: voilà le sens de ce `mes_tableaux[1][0]`.
 
-Et donc, pour notre ARGV? Ben si l'utilisateur ne demande qu'une année, elle sera automatiquement en première position, donc d'index `0`.
+Et donc, pour notre ARGV&nbsp;? Ben si l'utilisateur ne demande qu'une année, elle sera automatiquement en première position, donc d'index `0`.
 
 `puts ARGV[0]`
 
@@ -388,15 +390,15 @@ affichera le contenu du premier champ du tableau ARGV, et donc dans notre cas l'
 
 Il y a de nombreuses structures disponibles, et pour le moment nous n'avons vu que le tableau (ou 'Array'). Et encore, on l'a aperçu... mais ça suffit pour nos besoins actuels.
 
-Je dois en présenter une autre avant d'aller plus loin, même si on ne va pas s'en servir de suite: le dictionnaire, ou en Ruby le "hash".
+Je dois en présenter une autre avant d'aller plus loin, même si on ne va pas s'en servir de suite&nbsp;: le dictionnaire, ou en Ruby le "hash".
 
 Alors qu'un tableau contient une suite d'éléments uniques, un hash contient une suite d'éléments par paires, et ces paires sont des clés/valeurs.
 
 Comme dans un vrai dictionnaire, où chaque clé "mot" correspond à une valeur "définition du mot".
 
-Et en Ruby comme en Python, un dictionnaire s'écrit... comme du JSON, entre "{" et "}". 
+Et en Ruby comme en Python, un dictionnaire s'écrit... comme du JSON, entre `{` et `}`. 
 
-A la différence qu'en Ruby il n'y a pas ":" entre la clé et la valeur mais "=>".
+A la différence qu'en Ruby il n'y a pas `:` entre la clé et la valeur mais `=>`.
 
 ```ruby
 moi = {'âge' => 40, 'prénom' => 'eric', 'sexe' => 'non mais oh'}
@@ -415,15 +417,15 @@ puts "Mon prénom est " + moi['prénom']
 puts "Et on s'arrêtera là, " + moi['sexe']
 ```  
 
-C'est le même principe que pour les tableaux, mais au lieu de [index] on a ['clé'] pour retrouver les valeurs.
+C'est le même principe que pour les tableaux, mais au lieu de `[index]` on a `['clé']` pour retrouver les valeurs.
 
-Au passage, on vient de voir que "+" en Ruby n'est pas fait que pour le calcul.&nbsp;:)
+Au passage, on vient de voir que `+` en Ruby n'est pas fait que pour le calcul.&nbsp;:)
 
 *Rappel&nbsp;: vous vous souvenez qu'on appelle des méthodes sur des objets via un point&nbsp;?*
 
 En Ruby tout est objet, et la plupart des objets ont déjà plein de méthodes prédéfinies par le langage.
 
-Par exemple, ici on va transformer 'eric' en 'Eric' en appellant la méthode 'capitalize' sur l'objet chaîne de caractères 'prénom' du dictionnaire 'moi'.
+Par exemple, ici on va transformer 'eric' en 'Eric' en appellant la méthode `capitalize` sur l'objet chaîne de caractères `prénom` du dictionnaire `moi`.
 
 **exo1d.rb**
 
@@ -443,9 +445,9 @@ Le résultat du script `exo1d.rb` est:
 
 `Mon prénom est Eric`
 
-On peut appeler la méthode "capitalize" sur du texte car elle fait partie des nombreuses méthodes déjà inclues par Ruby pour ce type d'objet.
+On peut appeler la méthode `capitalize` sur du texte car elle fait partie des nombreuses méthodes déjà inclues par Ruby pour ce type d'objet.
 
-Dernier point: vous avez remarqué que certaines valeurs sont des chaînes de caractères (elles sont entre guillemets simples ou doubles), autrement dit du texte, et que d'autres sont des valeurs numériques, des nombres.
+Dernier point&nbsp;: vous avez remarqué que certaines valeurs sont des chaînes de caractères (elles sont entre guillemets simples ou doubles), autrement dit du texte, et que d'autres sont des valeurs numériques, des nombres.
 
 Un nombre n'est pas la même chose que sa représentation textuelle.
 
@@ -453,7 +455,7 @@ Un nombre n'est pas la même chose que sa représentation textuelle.
 
 Le premier est un nombre, le deuxième est une chaîne de caractères qui représente ce nombre.
 
-Avec notre exemple, si vous faites:
+Avec notre exemple, si vous faites&nbsp;:
 
 ```ruby
 moi = {'âge' => 40, 'prénom' => 'eric', 'sexe' => 'non mais oh'}
@@ -463,7 +465,7 @@ puts "J'ai " + moi['âge'] + " ans"
 
 alors Ruby va râler parce qu'il ne sait pas ajouter un nombre au milieu d'une chaîne de caractères.
 
-Il faut transformer le nombre en texte qui le représente, et pour cela on appelle sur cet objet nombre la méthode "to_s" (qui signifie "to string"):
+Il faut transformer le nombre en texte qui le représente, et pour cela on appelle sur cet objet nombre la méthode "to_s" (qui signifie "to string")&nbsp;:
 
 ```ruby
 moi = {'âge' => 40, 'prénom' => 'eric', 'sexe' => 'non mais oh'}
@@ -507,7 +509,7 @@ Ah&nbsp;! Il y a là pas mal de nouveautés. Mais c'est plutôt simple, suivez l
 
 Commençons par les deux dernières lignes. Que voit-on&nbsp;? 
 
-Une classe, que nous avons définie au début du script, est instanciée *avec un paramètre* (ce paramètre est ARGV) dans un objet nommé 'exo', puis une méthode (what_year) de cette classe est appellée sur cet objet.
+Une classe, que nous avons définie au début du script, est instanciée *avec un paramètre* (ce paramètre est `ARGV`) dans un objet nommé `exo`, puis une méthode (`what_year`) de cette classe est appellée sur cet objet.
 
 Avant nous avions fait 
 
@@ -521,9 +523,9 @@ pour instancier la classe avec, déjà, au départ, une valeur.
 
 Cette valeur c'est dans notre exemple `ARGV`, qui souvenez-vous est une constante qui contient ce que l'utilisateur a demandé sur la ligne de commande.
 
-La classe récupère cette valeur lors de son instanciation et la fait sienne grâce à la méthode nommée 'initialize'.
+La classe récupère cette valeur lors de son instanciation et la fait sienne grâce à la méthode nommée `initialize`.
 
-La méthode 'initialize' prend un paramètre, étiquetté ici 'params' dans sa définition, mais j'aurais pu le nommer comme bon me semble, genre 'chameau' ou 'fesse'. Mais bon... il vaut mieux s'efforcer de toujours être explicite et dans le contexte.&nbsp;:)
+La méthode `initialize` prend un paramètre, étiquetté ici `params` dans sa définition, mais j'aurais pu le nommer comme bon me semble, genre 'chameau' ou 'fesse'. Mais bon... il vaut mieux s'efforcer de toujours être explicite et dans le contexte.&nbsp;:)
 
 Le contenu de ce paramètre (chez nous ce sera donc ARGV lors de l'instanciation) est transféré dans une variable dite *variable d'instance* (car elle est accessible par toutes les méthodes de l'objet instancié), qui est représentée par 
 
@@ -531,17 +533,17 @@ Le contenu de ce paramètre (chez nous ce sera donc ARGV lors de l'instanciation
 
 (en Ruby, les variables d'instance s'écrivent avec un '@' devant leur nom.)
 
-La ligne 
+L'instruction
 
 `exo = NasaExo.new(ARGV)` 
 
 signifie donc&nbsp;: 
 
-**dis Ruby, crée je te prie une nouvelle instance de la classe 'NasaExo' dans la variable 'exo', et initialise au passage à l'intérieur de cette instance une variable '@year' à partir du contenu de ARGV.**
+**dis Ruby, crée je te prie une nouvelle instance de la classe `NasaExo` dans la variable `exo`, et initialise au passage à l'intérieur de cette instance une variable `@year` à partir du contenu de `ARGV`.**
 
-Ensuite nous voyons que la méthode 'initialize' dans notre classe ne fait pas que transférer la valeur 'ARGV' dans la variable '@year' en passant par le paramètre 'params': elle en prend le premier élément du tableau (params[0]).
+Ensuite nous voyons que la méthode `initialize` dans notre classe ne fait pas que transférer la valeur `ARGV` dans la variable `@year` en passant par le paramètre `params`: elle en prend le premier élément du tableau (`params[0]`).
 
-*Je résume: ARGV, qui contient un tableau, est passé à la classe NasaExo qui s'instancie avec une variable contenant la première valeur de ce tableau.*
+*Je résume: `ARGV`, qui contient un tableau, est passé à la classe `NasaExo` qui s'instancie avec une variable contenant la première valeur de ce tableau.*
 
 C'est pas clair&nbsp;? Regardez cet autre exemple&nbsp;:
 
@@ -557,7 +559,7 @@ Si vous instanciez la classe avec par exemple
 
 `maclasse = JeParleToutSeul.new`
 
-la phrase "Héhé ahah ohoh" sera affichée! Alors que nous n'avons pas encore appelé de méthode!
+la phrase "Héhé ahah ohoh" sera affichée&nbsp;! Alors que nous n'avons pas encore appelé de méthode&nbsp;!
 
 C'est que "initialize", si présent, est *toujours* exécuté lors de l'instanciation d'une classe, tout simplement. Et avec une valeur&nbsp;?
 
@@ -631,4 +633,4 @@ On manipule des objets qui se passent des messages entre eux... sous forme d'obj
 
 Si c'est encore un peu abstrait/étrange c'est bien normal, et puis nous n'avons fait qu'effleurer ces concepts, sous forme simplifiée...
 
-Rendez-vous au prochain article pour faire monter la température&nbsp;! 
+Rendez-vous au prochain article pour faire monter la température&nbsp;!
