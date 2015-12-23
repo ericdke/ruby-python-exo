@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
+# Dead API version
 require 'json'
 require 'rest_client'
 
 class ExoNetwork
-  def initialize
-    @api_base = 'http://exoapi.com/api/skyhook/'
-  end
+  attr_accessor :year
 
   def download_planets_by_year year
-    download "#{@api_base}planets/search?disc_year=#{year}"
+    @year = year
+    download "http://aya.io/exo/all_planets.json"
   end
 
   def download url
@@ -18,7 +18,11 @@ class ExoNetwork
     rescue SocketError, SystemCallError
       ExoErrors.abort_cnx
     end
-    JSON.load(cnx[0])['response']['results']
+    decode(cnx[0])
+  end
+
+  def decode data
+    JSON.load(data)['response']['results'].select {|planet| planet["disc_year"] == @year}
   end
 end
 
